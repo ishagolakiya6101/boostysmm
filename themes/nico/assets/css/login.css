@@ -9,6 +9,10 @@ body {
 .auth-page {
   padding: 16px 0; }
 
+.auth-page .container {
+  padding-left: 16px;
+  padding-right: 16px; }
+
 .brand-wrapper {
   margin-bottom: 19px; }
   .brand-wrapper .logo {
@@ -20,7 +24,9 @@ body {
   box-shadow: 0 20px 60px 0 rgba(15, 23, 42, 0.45);
   overflow: hidden;
   background-color: #fff;
-  margin: 0 auto; }
+  margin: 0 auto;
+  width: 100%;
+  max-width: 980px; }
   .auth-left {
     background: linear-gradient(160deg, #0f172a 0%, #1e293b 55%, #0b1020 100%);
     color: #e2e8f0;
@@ -162,6 +168,9 @@ body {
 @media (max-width: 767px) {
   .login-card {
     border-radius: 18px; }
+  .login-card .row.no-gutters {
+    margin-left: 0;
+    margin-right: 0; }
   .auth-left {
     min-height: auto;
     padding: 36px 28px;
@@ -190,7 +199,23 @@ body {
     width: 100%; }
   .g-recaptcha {
     transform: scale(0.92);
-    transform-origin: left center; } }
+    transform-origin: left center; }
+  .login-card form {
+    max-width: 100%; }
+  .input-icon-group .form-control {
+    font-size: 15px; } }
+
+@media (max-width: 380px) {
+  .auth-left {
+    padding: 24px 18px; }
+  .login-card .card-body {
+    padding: 28px 18px; }
+  .logo-lg {
+    height: 72px; }
+  .auth-headline {
+    font-size: 20px; }
+  .auth-subtext {
+    font-size: 14px; } }
 
 /*# sourceMappingURL=login.css.map */
 
