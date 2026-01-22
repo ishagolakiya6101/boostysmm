@@ -92,7 +92,7 @@
                       <label class="custom-control-label" for="customCheck1">I agree to <a class="auth-link" href="<?=cn('terms')?>">Terms &amp; Conditions</a> &amp; <a class="auth-link" href="<?=cn('terms')?>">Privacy Policy</a></label>
                     </div>              
                   </div>
-                  <button class="btn btn-block login-btn btn-submit mb-4" type="submit">Create Account</button>
+                  <button class="btn btn-block login-btn btn-submit mb-4" type="submit">Create Account – It's Free</button>
                   
                   <?php echo $social_login_html?>
 
