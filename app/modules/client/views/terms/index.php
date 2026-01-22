@@ -11,6 +11,7 @@
     background: #ffffff;
     border-radius: 10px;
     box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    border: 1px solid #eef2f7;
     padding: 30px;
     font-family: "Poppins", "Inter", "Nunito", sans-serif;
   }
@@ -39,14 +40,17 @@
     font-weight: 600;
     font-size: 14px;
     text-decoration: none;
+    background: #ffffff;
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
     transition: all 0.2s ease;
   }
   .terms-nav a:hover {
     border-color: #2563eb;
     color: #2563eb;
+    transform: translateY(-1px);
   }
   .terms-section h2 {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
     margin: 20px 0 12px;
     color: #0f172a;
@@ -63,6 +67,11 @@
   .terms-section ul {
     padding-left: 18px;
     margin-top: 6px;
+  }
+  .terms-section + .terms-section {
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top: 1px solid #eef2f7;
   }
   @media (max-width: 767px) {
     .terms-card {
