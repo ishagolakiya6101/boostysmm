@@ -53,7 +53,28 @@
       <div class="title">
         <h2><?=lang("Terms")?></h2>
       </div>
-      <?php echo get_option("terms_content", ""); ?>
+      <?php if (get_theme() === 'nico') : ?>
+        <div class="terms-content">
+          <p><strong>Terms &amp; Conditions</strong></p>
+          <p>Welcome to Boosty SMM Panel.</p>
+          <p>By using our services, you agree to the following terms:</p>
+          <ol>
+            <li><strong>Service Usage</strong> - Our services are only for promotional purposes. We do not guarantee organic engagement.</li>
+            <li><strong>No Refund Policy</strong> - Once order is placed, refund is not possible. Make sure to read service description carefully before ordering.</li>
+            <li><strong>Order Responsibility</strong> - We are not responsible if: Account is private, Username changed, Post deleted, Wrong link provided.</li>
+            <li><strong>Service Delay</strong> - Sometimes services may be slow due to server issues. Please wait patiently.</li>
+            <li><strong>Account Safety</strong> - We do not ask for passwords. Never share your login details.</li>
+            <li><strong>Cancellation</strong> - Orders once started cannot be cancelled.</li>
+            <li><strong>Multiple Orders</strong> - Do not place multiple orders on same link at same time.</li>
+            <li><strong>Suspension Rights</strong> - We have full rights to suspend accounts doing: Fraud, Chargeback, Abuse, Fake disputes.</li>
+            <li><strong>Disclaimer</strong> - We are not affiliated with Instagram, Facebook, YouTube or any platform.</li>
+            <li><strong>Changes</strong> - We can update these terms anytime without notice.</li>
+          </ol>
+          <p>By using our panel, you accept all these terms.</p>
+        </div>
+      <?php else : ?>
+        <?php echo get_option("terms_content", ""); ?>
+      <?php endif; ?>
     </div>
   </div> 
 
