@@ -21,31 +21,28 @@
   ?>
 
   <body>
-    <main class="auth-page">
+    <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
       <div class="container">
-        <div class="auth-split">
-          <div class="auth-brand">
-            <a class="auth-logo" href="<?=cn();?>">
-              <img src="<?=get_option('website_logo', BASE."assets/images/logo.png")?>" alt="BoostySMM logo" class="logo">
-            </a>
-            <h2>Grow your social media with BoostySMM</h2>
-            <p>Fast, affordable & trusted SMM services</p>
-          </div>
-          <div class="auth-card">
-            <div class="card-body">
-              <p class="login-card-description"><?=lang("login_to_your_account")?></p>
-              <p class="auth-subtitle">Welcome back, let's grow together</p>
-              <?php echo form_open($form_url, $form_attributes); ?>
-                <div class="form-group input-with-icon">
-                  <span class="input-icon"><i class="fas fa-envelope"></i></span>
-                  <label for="email" class="sr-only"><?php echo lang("Email"); ?></label>
-                  <input type="email" name="email" id="email" class="form-control" value="<?=(isset($cookie_email) && $cookie_email != "") ? $cookie_email : '' ?>" placeholder="Enter your email">
+        <div class="card login-card">
+          <div class="row no-gutters">
+            <div class="col-md-6 left-image mx-auto">
+              <a href="<?=cn();?>"><img src="<?php echo BASE; ?>themes/nico/assets/images/login.png" alt="login" class="login-card-img"></a>
+            </div>
+            <div class="col-md-6">
+              <div class="card-body">
+                <div class="brand-wrapper">
+                  <a href="<?=cn();?>"><img src="<?=get_option('website_logo', BASE."assets/images/logo.png")?>" alt="logo" class="logo"></a>
                 </div>
-                <div class="form-group input-with-icon">
-                  <span class="input-icon"><i class="fas fa-lock"></i></span>
-                  <label for="password" class="sr-only"><?php echo lang("Password"); ?></label>
-                  <input type="password" name="password" id="password" class="form-control" value="<?=(isset($cookie_pass) && $cookie_pass != "") ? $cookie_pass : ""?>" placeholder="Enter your password">
-                </div>
+                <p class="login-card-description"><?=lang("login_to_your_account")?></p>
+                <?php echo form_open($form_url, $form_attributes); ?>
+                  <div class="form-group">
+                    <label for="email" class="sr-only"><?php echo lang("Email"); ?></label>
+                    <input type="email" name="email" id="email" class="form-control" value="<?=(isset($cookie_email) && $cookie_email != "") ? $cookie_email : '' ?>" placeholder="<?php echo lang("Email"); ?>">
+                  </div>
+                  <div class="form-group">
+                    <label for="password" class="sr-only"><?php echo lang("Password"); ?></label>
+                    <input type="password" name="password" id="password" class="form-control" value="<?=(isset($cookie_pass) && $cookie_pass != "") ? $cookie_pass : ""?>" placeholder="<?php echo lang("Password"); ?>">
+                  </div>
 
                   <div class="form-group mt-20">
                     <div id="alert-message" class="alert-message-reponse"></div>
@@ -68,15 +65,13 @@
                   </div>
                   <?php } ?> 
 
-                  <button class="btn btn-block login-btn btn-submit mb-4 auth-submit" type="submit"><?=lang("Login")?></button>
+                  <button class="btn btn-block login-btn btn-submit mb-4" type="submit"><?=lang("Login")?></button>
                   <?php echo $social_login_html?>
 
                 <?php echo form_close(); ?>
 
                 <?php if (!session('uid')) : ?>
-                  <p class="login-card-footer-text auth-redirect">
-                    <span>Don't have an account?</span> <a href="<?=cn('auth/signup')?>">Create one</a>
-                  </p>
+                  <p class="login-card-footer-text"><?=lang("dont_have_account_yet")?> <a href="<?=cn('auth/signup')?>" class="text-reset"><?=lang("Sign_Up")?></a></p>
                 <?php endif; ?> 
 
                 <?php if (!session('uid')) : ?>
@@ -84,11 +79,6 @@
                     <a href="<?=cn("auth/forgot_password")?>" class="text-reset"><?=lang("forgot_password")?>?</a>
                   </nav>
                 <?php endif; ?>
-                <div class="auth-trust">
-                  <span>✔ Secure login</span>
-                  <span>✔ No spam</span>
-                  <span>✔ 24/7 support</span>
-                </div>
               </div>
             </div>
           </div>
