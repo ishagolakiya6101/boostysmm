@@ -17,19 +17,29 @@
     'method'        => "POST"
   ];
 ?>
-<section class="sign-up-form">
+<section class="sign-up-form auth-page">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
+    <div class="auth-split">
+      <div class="auth-brand">
+        <a class="auth-logo" href="<?=cn()?>">
+          <img src="<?=get_option('website_logo', BASE."assets/images/logo.png")?>" alt="BoostySMM logo">
+        </a>
+        <h2>Grow your social media with BoostySMM</h2>
+        <p>Fast, affordable & trusted SMM services</p>
+      </div>
+      <div class="auth-card">
         <h1><?=lang("login_to_your_account")?></h1>
+        <p class="auth-subtitle">Welcome back, let's grow together</p>
         <div class="form-container">
           <?php echo form_open($form_url, $form_attributes); ?>
-            <div class="form-group">
-              <input type="email" class="form-control-input" name="email" value="<?=(isset($cookie_email) && $cookie_email != "") ? $cookie_email : '' ?>"  required>
+            <div class="form-group input-with-icon">
+              <span class="input-icon"><i class="fas fa-envelope"></i></span>
+              <input type="email" class="form-control-input" name="email" placeholder="Enter your email" value="<?=(isset($cookie_email) && $cookie_email != "") ? $cookie_email : '' ?>"  required>
               <label class="label-control" for="semail"><?php echo lang("Email"); ?></label>
             </div>
-            <div class="form-group">
-              <input type="password" class="form-control-input" name="password" value="<?=(isset($cookie_pass) && $cookie_pass != "") ? $cookie_pass : ""?>"  required>
+            <div class="form-group input-with-icon">
+              <span class="input-icon"><i class="fas fa-lock"></i></span>
+              <input type="password" class="form-control-input" name="password" placeholder="Enter your password" value="<?=(isset($cookie_pass) && $cookie_pass != "") ? $cookie_pass : ""?>"  required>
               <label class="label-control" for="spassword"><?php echo lang("Password"); ?></label>
             </div>
             <div class="form-group mt-20">
@@ -62,17 +72,22 @@
             <?php } ?> 
 
             <div class="form-group">
-              <button type="submit" class="form-control-submit-button btn-submit"><?=lang("Login")?></button>
+              <button type="submit" class="form-control-submit-button btn-submit auth-submit"><?=lang("Login")?></button>
             </div>
 
             <?php echo $social_login_html; ?>      
 
           <?php echo form_close(); ?>
           <?php if (!get_option('disable_signup_page') && !session('uid')): ?>
-            <div class="text-center text-muted">
-              <?=lang("dont_have_account_yet")?> <a href="<?=cn('auth/signup')?>"><?=lang("Sign_Up")?></a>
+            <div class="text-center text-muted auth-redirect">
+              <span>Don't have an account?</span> <a href="<?=cn('auth/signup')?>">Create one</a>
             </div>
           <?php endif; ?>
+          <div class="auth-trust">
+            <span>✔ Secure login</span>
+            <span>✔ No spam</span>
+            <span>✔ 24/7 support</span>
+          </div>
         </div>
       </div>
     </div>

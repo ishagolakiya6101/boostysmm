@@ -9,15 +9,24 @@
     'method'        => "POST"
   ];
 ?>
-<section class="sign-up-form">
+<section class="sign-up-form auth-page">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <h1><?=lang("register_now")?></h1>
+    <div class="auth-split">
+      <div class="auth-brand">
+        <a class="auth-logo" href="<?=cn()?>">
+          <img src="<?=get_option('website_logo', BASE."assets/images/logo.png")?>" alt="BoostySMM logo">
+        </a>
+        <h2>Grow your social media with BoostySMM</h2>
+        <p>Fast, affordable & trusted SMM services</p>
+      </div>
+      <div class="auth-card">
+        <h1>Create Your Account</h1>
+        <p class="auth-subtitle">Start boosting your social presence today</p>
         <div class="form-container">
           <?php echo form_open($form_url, $form_attributes); ?>
-            <div class="form-group">
-                <input type="email" class="form-control-input" name="email" required>
+            <div class="form-group input-with-icon">
+                <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                <input type="email" class="form-control-input" name="email" placeholder="Enter your email" required>
                 <label class="label-control" for="semail"><?php echo lang("Email"); ?></label>
                 <div class="help-block with-errors"></div>
             </div>
@@ -52,14 +61,16 @@
               </div>
             <?php } ?>
 
-            <div class="form-group">
-                <input type="password" class="form-control-input" name="password" required>
+            <div class="form-group input-with-icon">
+                <span class="input-icon"><i class="fas fa-lock"></i></span>
+                <input type="password" class="form-control-input" name="password" placeholder="Create password" required>
                 <label class="label-control" for="spassword"><?php echo lang("Password"); ?></label>
                 <div class="help-block with-errors"></div>
             </div>
 
-            <div class="form-group">
-                <input type="password" class="form-control-input" name="re_password" required>
+            <div class="form-group input-with-icon">
+                <span class="input-icon"><i class="fas fa-lock"></i></span>
+                <input type="password" class="form-control-input" name="re_password" placeholder="Confirm password" required>
                 <label class="label-control" for="spassword"><?php echo lang("Confirm_password"); ?></label>
                 <div class="help-block with-errors"></div>
             </div>
@@ -90,21 +101,26 @@
             <?php } ?>
             <div class="row">
               <div class="col-md-12">
-                <div class="form-group checkbox">
+                <div class="form-group checkbox auth-terms">
                   <input type="checkbox"  name="terms">
-                  <label class=""><?=lang("i_agree_the")?> <a href="<?=cn('terms')?>"><?=lang("terms__policy")?></a></label>
+                  <label class="">I agree to <a href="<?=cn('terms')?>">Terms & Conditions</a> &amp; <a href="<?=cn('terms')?>">Privacy Policy</a></label>
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <button type="submit" class="form-control-submit-button btn-submit"><?=lang("create_new_account")?></button>
+              <button type="submit" class="form-control-submit-button btn-submit auth-submit">Create Account</button>
             </div>
             
             <?php echo $social_login_html; ?>  
 
           <?php echo form_close(); ?>
-          <div class="text-center text-muted">
-            <?=lang("already_have_account")?> <a href="<?=cn('auth/login')?>"><?=lang("Login")?></a>
+          <div class="text-center text-muted auth-redirect">
+            <span>Already have an account?</span> <a href="<?=cn('auth/login')?>">Login here</a>
+          </div>
+          <div class="auth-trust">
+            <span>✔ Secure login</span>
+            <span>✔ No spam</span>
+            <span>✔ 24/7 support</span>
           </div>
         </div>
       </div>
