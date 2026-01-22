@@ -54,6 +54,10 @@ function General(){
             }
             _that.toggleClass("active");
         });
+
+        $(document).on("click", ".sidebar-close", function(){
+            $(".navbar.navbar-side").removeClass("active");
+        });
     }
 
     this.AddFunds = function () {

@@ -9,69 +9,54 @@
   $CI = &get_instance();
   $CI->load->model('model');
   $total_unread_tickets = $CI->model->count_results('id', TICKETS, ['user_read' => 1, 'uid' => session('uid')]);
-  $enable_item_api_menu = get_option('enable_api_tab');
-?>
+  $user = current_logged_user();
+  $user_name = $user ? $user->first_name : '';
+  $user_balance = $user && isset($user->balance) ? (float)$user->balance : 0;
+  $user_balance_inr = '₹' . number_format($user_balance, 2);
+  $avatar_url = BASE . 'assets/admin/dist/images/user-avatar.png';
 
-<?php
-  $sidebar_elements = app_config('controller')['user'];
-  if (!is_table_exists(AFFILIATE) || !get_option('affiliate_mode', 0)) unset($sidebar_elements['affiliates']);
-  if (is_table_exists(AFFILIATE)) {
-    $item_affiliate = $CI->model->get('status', AFFILIATE, ['uid' => session('uid')], '', '', true);
-    if ($item_affiliate && !$item_affiliate['status']) {
-      unset($sidebar_elements['affiliates']);
+  $sidebar_items = [
+    ['key' => 'statistics',   'label' => 'Dashboard',        'icon' => 'fe fe-home',          'route' => 'statistics'],
+    ['key' => 'new_order',    'label' => 'New Order',        'icon' => 'fe fe-shopping-cart', 'route' => 'new_order'],
+    ['key' => 'order',        'label' => 'My Orders',        'icon' => 'fe fe-clipboard',     'route' => 'order'],
+    ['key' => 'services',     'label' => 'Services',         'icon' => 'fe fe-grid',          'route' => 'services'],
+    ['key' => 'tickets',      'label' => 'Support',          'icon' => 'fe fe-message-circle','route' => 'tickets'],
+    ['key' => 'add_funds',    'label' => 'Add Funds',        'icon' => 'fe fe-credit-card',   'route' => 'add_funds'],
+    ['key' => 'transactions', 'label' => 'Transaction Logs', 'icon' => 'fe fe-file-text',     'route' => 'transactions'],
+    ['key' => 'profile',      'label' => 'Settings',         'icon' => 'fe fe-settings',      'route' => 'profile'],
+    ['key' => 'logout',       'label' => 'Logout',           'icon' => 'fe fe-log-out',       'route' => 'auth/logout'],
+  ];
+
+  $xhtml = '<ul class="navbar-nav mb-md-4 sidebar-menu" id="menu">';
+  foreach ($sidebar_items as $item) {
+    $route_name = $item['route'];
+    $is_support = $item['key'] === 'tickets';
+    $is_logout = $item['key'] === 'logout';
+    $is_active = (!$is_logout && ($route_name === segment(1) || ($is_support && in_array(segment(1), ['tickets', 'faq'])))) ? 'active' : '';
+    $support_badge = '';
+    if ($is_support && $total_unread_tickets > 0) {
+      $support_badge = sprintf('<span class="badge badge-support support-badge--pulse">%s</span>', $total_unread_tickets);
     }
-  }
-  if (!is_table_exists(ORDERS_REFILL)) unset($sidebar_elements['refill']);
-  $xhtml = '<ul class="navbar-nav mb-md-4" id="menu">';
-  $xhtml .= sprintf('<li class="nav-item d-block d-lg-none">
-              <a class="nav-link bg-indigo mt-2 text-white" href="#">
-                %s : %s
-              </a>
-            </li>', lang('Balance'), esc($current_balance));
-
-
-  foreach ($sidebar_elements as $key => $item) {
-    $item_name = lang($item['name']);
-    if ($item['area_title']) {
-      $xhtml .= sprintf('<h6 class="navbar-heading first"><span class="text">%s</span></h6>', $item_name);
-    } else {
-      if ($key == 'api' && !$enable_item_api_menu) {
-        continue;
-      }
-      
-      $route_name = $item['route-name'];
-      $class_active = ($route_name == segment(1)) ? 'active' : '';
-
-      $xmtml_ticket_unread_numbers = null;
-      if ($key == 'tickets') {
-        $xmtml_ticket_unread_numbers = sprintf('<span class="ml-auto badge badge-warning">%s</span>', $total_unread_tickets);
-      }
-
-      $xhtml .= sprintf(
-        '<li class="nav-item">
-          <a class="nav-link %s" href="%s" data-toggle="tooltip" data-placement="right" title="%s">
-            <span class="nav-icon">
-              <i class="%s"></i>
-            </span>
-            <span class="nav-text">
-              %s
-              %s
-            </span>
-          </a>
-        </li>', $class_active, cn($route_name), $item_name, $item['icon'],  $item_name, $xmtml_ticket_unread_numbers);
-    }
-    
-  }
-  $xhtml .= sprintf('<li class="nav-item  d-block d-lg-none">
-        <a class="nav-link" href="#customize" data-toggle="modal">
+    $xhtml .= sprintf(
+      '<li class="nav-item">
+        <a class="nav-link %s" href="%s" data-toggle="tooltip" data-placement="right" title="%s">
           <span class="nav-icon">
-            <i class="icon-fa fa fa-cogs"></i>
+            <i class="%s"></i>
           </span>
           <span class="nav-text">
+            <span class="nav-label">%s</span>
             %s
           </span>
         </a>
-      </li>',  lang('Theme_Customizer'));
+      </li>',
+      $is_active,
+      cn($route_name),
+      $item['label'],
+      $item['icon'],
+      $item['label'],
+      $support_badge
+    );
+  }
   $xhtml .= '</ul>';
 ?>
 <aside class="navbar navbar-side navbar-fixed js-sidebar" id="aside">
@@ -80,17 +65,18 @@
       <img src="<?=get_option('website_logo', BASE."assets/images/logo.png")?>" alt="Website Logo" class="hide-navbar-folded navbar-brand-logo">
       <img src="<?=get_option('website_logo_mark', BASE."assets/images/logo-mark.png")?>" alt="Website Logo" class="hide-navbar-expanded navbar-brand-logo">
     </a>
+    <button type="button" class="sidebar-close d-lg-none" aria-label="Close sidebar">
+      <i class="fe fe-x"></i>
+    </button>
+  </div>
+  <div class="sidebar-user-card">
+    <div class="sidebar-user-avatar" style="background-image: url('<?=esc($avatar_url)?>');"></div>
+    <div class="sidebar-user-text">
+      <span class="sidebar-user-greet">Hi, <?=esc($user_name)?> 👋</span>
+      <span class="sidebar-user-balance">Wallet Balance: <?=esc($user_balance_inr)?></span>
+    </div>
   </div>
   <div class="flex-fill scroll-bar">
     <?=$xhtml?>
   </div>
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a href="<?php echo cn('auth/logout'); ?>" class="nav-link" data-toggle="tooltip" data-placement="right" title="<?php echo lang('Logout'); ?>">
-        <span class="nav-icon"><i class="icon fe fe-power"></i>
-        </span>
-        <span class="nav-text"><?php echo lang('Logout'); ?></span>
-      </a>
-    </li>
-  </ul>
 </aside>

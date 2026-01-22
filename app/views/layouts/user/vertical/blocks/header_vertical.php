@@ -11,11 +11,10 @@
   $balance = current_logged_user()->balance;
   if (empty($balance) || $balance == 0) {
     $balance = 0.00;
-  } else {
-    $balance = currency_format($balance);
   }
-  $current_balance = get_option('currency_symbol',"$") . $balance;
-  $nav_item_user_title = sprintf('%s! <span class="text-uppercase">%s</span>', lang('Hi'), current_logged_user()->first_name);
+  $current_balance_inr = '₹' . number_format((float)$balance, 2);
+  $user_name = current_logged_user()->first_name;
+  $avatar_url = BASE . 'assets/admin/dist/images/user-avatar.png';
 ?>
 
 <header class="navbar navbar-expand-xl js-header">
@@ -37,29 +36,6 @@
         <a class="nav-link ajaxViewUser" href="<?=cn("back-to-admin")?>" >
           <span class="nav-icon">
             <i class="icon fe fe-log-out" data-toggle="tooltip" data-placement="bottom" title="<?=lang('Back_to_Admin')?>"></i>
-          </span>
-        </a>
-      </li>
-      <?php }?>
-
-      <li class="nav-item d-none d-lg-block">
-        <a class="nav-link" href="#customize" data-toggle="modal" >
-          <span class="nav-icon">
-            <i class="icon fe fe-sliders" data-toggle="tooltip" data-placement="bottom" title="<?php echo lang('Theme_Customizer'); ?>"></i>
-          </span>
-        </a>
-      </li>
-
-      <?php
-        if (get_option("enable_news_announcement") &&  get_option('news_announcement_button_position', "header") == 'header') {
-      ?>
-      <li class="nav-item notifcation">
-        <a class="nav-link ajaxModal" href="<?=cn("news-annoucement")?>" >
-          <span class="nav-icon">
-            <i class="icon fe fe-bell" data-toggle="tooltip" data-placement="bottom" title="<?=lang("news__announcement")?>"></i>
-            <div class="test">
-              <span class="nav-unread <?=(isset($_COOKIE["news_annoucement"]) && $_COOKIE["news_annoucement"] == "clicked") ? "" : "change_color"?>"></span>
-            </div>
           </span>
         </a>
       </li>
@@ -87,18 +63,18 @@
       
       <li class="nav-item dropdown">
         <a href="#" data-toggle="dropdown" class="nav-link d-flex align-items-center py-0 px-lg-0 px-2 text-color">
-          <span class="ml-2 d-none d-lg-block leading-none">
-            <span class="mt-1"><?= $nav_item_user_title; ?></span>
-            <small class="badge bg-indigo d-block mt-1 user-balance">
-              <?= esc($current_balance)?>
-            </small>
-          </span>
-          <span class="avatar admin-profile m-l-10"></span>
+          <span class="avatar user-avatar m-l-10" style="background-image: url('<?=esc($avatar_url)?>');"></span>
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+          <div class="dropdown-item-text small text-muted"><?=lang('Hi')?>, <?=esc($user_name)?> · <?=esc($current_balance_inr)?></div>
+          <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="<?php echo cn('profile'); ?>">
             <i class="icon fe fe-user dropdown-icon"></i>
             <?php echo lang('Profile'); ?>
+          </a>
+          <a class="dropdown-item" href="<?php echo cn('profile'); ?>">
+            <i class="icon fe fe-settings dropdown-icon"></i>
+            <?php echo lang('Settings'); ?>
           </a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="<?php echo cn('auth/logout'); ?>">
