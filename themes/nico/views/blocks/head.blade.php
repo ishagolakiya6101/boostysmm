@@ -14,6 +14,7 @@
     <meta name="MobileOptimized" content="320">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <link href="<?php echo BASE; ?>themes/nico/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo BASE; ?>themes/nico/assets/css/fontawesome-all.css" rel="stylesheet">
     <script src="<?php echo BASE; ?>assets/js/vendors/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="<?php echo BASE; ?>themes/nico/assets/css/login.css">
   

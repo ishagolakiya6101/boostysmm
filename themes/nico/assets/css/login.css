@@ -1,84 +1,162 @@
 body {
   font-family: "Nunito", sans-serif;
-  background-color: #f4f4f4;
+  background: linear-gradient(135deg, #0f1e4a 0%, #05060a 100%);
   min-height: 100vh; }
 
-.brand-wrapper {
-  margin-bottom: 19px; }
-  .brand-wrapper .logo {
-    height: 60px; }
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 4rem 0; }
 
-.login-card {
-  border: 0;
-  border-radius: 27.5px;
-  box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43);
-  overflow: hidden; }
-  .left-image {
-    background-color: #fafaec;}
-  .login-card-img {
-    border-radius: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -o-object-fit: cover;
-       object-fit: cover; }
-  .login-card .card-body {
-    padding: 85px 60px 60px; }
-    @media (max-width: 422px) {
-      .login-card .card-body {
-        padding: 35px 24px; } }
-  .login-card-description {
-    font-size: 25px;
-    color: #000;
-    font-weight: normal;
-    margin-bottom: 23px; }
-  .login-card form {
-    max-width: 326px; }
-  .login-card .form-control {
-    border: 1px solid #d5dae2;
-    padding: 11px 25px;
-    margin-bottom: 20px;
-    min-height: 45px;
-    font-size: 13px;
-    line-height: 15;
-    font-weight: normal; }
-    .login-card .form-control::-webkit-input-placeholder {
-      color: #919aa3; }
-    .login-card .form-control::-moz-placeholder {
-      color: #919aa3; }
-    .login-card .form-control:-ms-input-placeholder {
-      color: #919aa3; }
-    .login-card .form-control::-ms-input-placeholder {
-      color: #919aa3; }
-    .login-card .form-control::placeholder {
-      color: #919aa3; }
-  .login-card .login-btn {
-    padding: 13px 20px 12px;
-    background-color: #000;
-    border-radius: 4px;
-    font-size: 17px;
-    font-weight: bold;
-    line-height: 20px;
-    color: #fff;
-    margin-bottom: 24px; }
-    .login-card .login-btn:hover {
-      border: 1px solid #000;
-      background-color: transparent;
-      color: #000; }
-  .login-card .forgot-password-link {
-    font-size: 14px;
-    color: #919aa3;
-    margin-bottom: 12px; }
-  .login-card-footer-text {
-    font-size: 16px;
-    color: #0d2366;
-    margin-bottom: 60px; }
-    @media (max-width: 767px) {
-      .login-card-footer-text {
-        margin-bottom: 24px; } }
-  .login-card-footer-nav a {
-    font-size: 14px;
-    color: #919aa3; }
+.auth-page .container {
+  width: 100%; }
+
+.auth-split {
+  display: flex;
+  gap: 3rem;
+  align-items: center; }
+
+.auth-brand {
+  flex: 1 1 45%;
+  color: rgba(230, 233, 242, 0.9); }
+
+.auth-logo img {
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 1.5rem; }
+
+.auth-brand h2 {
+  font-size: 2rem;
+  line-height: 2.6rem;
+  margin-bottom: 0.75rem;
+  color: #ffffff; }
+
+.auth-brand p {
+  max-width: 26rem;
+  color: rgba(230, 233, 242, 0.8); }
+
+.auth-card {
+  flex: 1 1 55%;
+  background: #ffffff;
+  border-radius: 1.25rem;
+  padding: 2.5rem 2.25rem;
+  box-shadow: 0 30px 80px rgba(5, 6, 10, 0.35); }
+
+.auth-card .card-body {
+  padding: 0; }
+
+.login-card-description {
+  font-size: 26px;
+  color: #0f172a;
+  font-weight: 600;
+  margin-bottom: 8px; }
+
+.auth-subtitle {
+  color: #64748b;
+  margin-bottom: 1.75rem; }
+
+.auth-card form {
+  max-width: none; }
+
+.auth-card .form-control {
+  border: 1px solid #e2e8f0;
+  padding: 12px 18px;
+  margin-bottom: 20px;
+  min-height: 52px;
+  font-size: 16px;
+  border-radius: 14px;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06); }
+  .auth-card .form-control::-webkit-input-placeholder {
+    color: #94a3b8; }
+  .auth-card .form-control::-moz-placeholder {
+    color: #94a3b8; }
+  .auth-card .form-control:-ms-input-placeholder {
+    color: #94a3b8; }
+  .auth-card .form-control::-ms-input-placeholder {
+    color: #94a3b8; }
+  .auth-card .form-control::placeholder {
+    color: #94a3b8; }
+
+.input-with-icon {
+  position: relative; }
+
+.input-with-icon .form-control {
+  padding-left: 48px; }
+
+.input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 16px;
+  pointer-events: none; }
+
+.auth-card .login-btn {
+  width: 100%;
+  padding: 14px 20px;
+  background: linear-gradient(90deg, #2f80ed 0%, #9b51e0 100%);
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  color: #fff;
+  margin-bottom: 24px;
+  border: none;
+  box-shadow: 0 12px 26px rgba(93, 82, 255, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease; }
+  .auth-card .login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 34px rgba(93, 82, 255, 0.5);
+    filter: brightness(1.05); }
+
+.auth-terms a {
+  color: #2f80ed;
+  text-decoration: underline; }
+
+.auth-redirect {
+  font-size: 16px;
+  color: #64748b;
+  margin-bottom: 24px; }
+
+.auth-redirect a {
+  color: #2f80ed;
+  font-weight: 700; }
+
+.login-card-footer-nav a {
+  font-size: 14px;
+  color: #94a3b8; }
+
+.auth-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  color: #475569;
+  font-weight: 600;
+  font-size: 0.9rem; }
+
+html {
+  scroll-behavior: smooth; }
+
+@media (max-width: 991px) {
+  .auth-split {
+    flex-direction: column;
+    text-align: center; }
+  .auth-brand,
+  .auth-card {
+    flex: 1 1 100%; }
+  .auth-brand p {
+    margin-left: auto;
+    margin-right: auto; } }
+
+@media (max-width: 575px) {
+  .auth-card {
+    padding: 2rem 1.5rem;
+    border-radius: 1rem; }
+  .auth-card .form-control {
+    font-size: 16px; } }
 
 /*# sourceMappingURL=login.css.map */
 
