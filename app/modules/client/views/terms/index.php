@@ -120,8 +120,25 @@
       </div>
 
       <div id="privacy" class="terms-section">
-        <h2><?=lang("Privacy_Policy")?></h2>
-        <?php echo get_option("policy_content", ""); ?>
+        <h2>Privacy Policy</h2>
+        <p>Your privacy is important to us.</p>
+        <ol>
+          <li><strong>Data Protection</strong> - We never share your personal data with any third party.</li>
+          <li><strong>Email Usage</strong> - Your email is only used for:
+            <ul>
+              <li>Account login</li>
+              <li>Order updates</li>
+              <li>Support communication</li>
+            </ul>
+          </li>
+          <li><strong>Payment Security</strong> - All payments are processed through secure gateways.</li>
+          <li><strong>Cookies</strong> - We use cookies to improve user experience.</li>
+          <li><strong>Log Files</strong> - We collect IP address and browser info for security.</li>
+          <li><strong>Account Security</strong> - You are responsible for keeping your password safe.</li>
+          <li><strong>Third Party Services</strong> - We are not responsible for other websites you visit through our links.</li>
+          <li><strong>Policy Update</strong> - We can update this policy anytime.</li>
+        </ol>
+        <p>If you have any questions, contact support.</p>
       </div>
     </div>
   </div> 
