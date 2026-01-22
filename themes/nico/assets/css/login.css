@@ -6,6 +6,9 @@ body {
   background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
   min-height: 100vh; }
 
+.auth-page {
+  padding: 16px 0; }
+
 .brand-wrapper {
   margin-bottom: 19px; }
   .brand-wrapper .logo {
@@ -16,7 +19,8 @@ body {
   border-radius: 24px;
   box-shadow: 0 20px 60px 0 rgba(15, 23, 42, 0.45);
   overflow: hidden;
-  background-color: #fff; }
+  background-color: #fff;
+  margin: 0 auto; }
   .auth-left {
     background: linear-gradient(160deg, #0f172a 0%, #1e293b 55%, #0b1020 100%);
     color: #e2e8f0;
@@ -25,12 +29,15 @@ body {
     align-items: center;
     min-height: 520px; }
   .auth-left-inner {
-    width: 100%; }
+    width: 100%;
+    text-align: center; }
   .auth-logo {
-    display: inline-block;
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
     margin-bottom: 24px; }
   .logo-lg {
-    height: 96px;
+    height: 112px;
     width: auto; }
   .auth-headline {
     font-size: 24px;
@@ -169,6 +176,21 @@ body {
     width: 100%; }
   .trust-badges {
     justify-content: center; } }
+
+@media (max-width: 575px) {
+  .auth-page {
+    padding: 10px 0; }
+  .login-card {
+    border-radius: 16px; }
+  .auth-left {
+    padding: 28px 22px; }
+  .login-card .card-body {
+    padding: 32px 22px; }
+  .login-card .login-btn {
+    width: 100%; }
+  .g-recaptcha {
+    transform: scale(0.92);
+    transform-origin: left center; } }
 
 /*# sourceMappingURL=login.css.map */
 
