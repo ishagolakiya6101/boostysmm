@@ -21,27 +21,46 @@
   ?>
 
   <body>
-    <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+    <main class="d-flex align-items-center min-vh-100 py-3 py-md-0 auth-page">
       <div class="container">
         <div class="card login-card">
           <div class="row no-gutters">
-            <div class="col-md-6 left-image mx-auto">
-              <a href="<?=cn();?>"><img src="<?php echo BASE; ?>themes/nico/assets/images/login.png" alt="login" class="login-card-img"></a>
+            <div class="col-md-6 auth-left">
+              <div class="auth-left-inner">
+                <a href="<?=cn();?>" class="auth-logo">
+                  <img src="<?=get_option('website_logo', BASE."assets/images/logo.png")?>" alt="logo" class="logo-lg">
+                </a>
+                <h2 class="auth-headline">Grow your social media with BoostySMM</h2>
+                <p class="auth-subtext">Fast, affordable & trusted SMM services</p>
+              </div>
             </div>
             <div class="col-md-6">
               <div class="card-body">
-                <div class="brand-wrapper">
-                  <a href="<?=cn();?>"><img src="<?=get_option('website_logo', BASE."assets/images/logo.png")?>" alt="logo" class="logo"></a>
-                </div>
                 <p class="login-card-description"><?=lang("login_to_your_account")?></p>
                 <?php echo form_open($form_url, $form_attributes); ?>
                   <div class="form-group">
                     <label for="email" class="sr-only"><?php echo lang("Email"); ?></label>
-                    <input type="email" name="email" id="email" class="form-control" value="<?=(isset($cookie_email) && $cookie_email != "") ? $cookie_email : '' ?>" placeholder="<?php echo lang("Email"); ?>">
+                    <div class="input-icon-group">
+                      <span class="input-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none">
+                          <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/>
+                          <path d="m3 8 9 6 9-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      <input type="email" name="email" id="email" class="form-control" value="<?=(isset($cookie_email) && $cookie_email != "") ? $cookie_email : '' ?>" placeholder="Enter your email">
+                    </div>
                   </div>
                   <div class="form-group">
                     <label for="password" class="sr-only"><?php echo lang("Password"); ?></label>
-                    <input type="password" name="password" id="password" class="form-control" value="<?=(isset($cookie_pass) && $cookie_pass != "") ? $cookie_pass : ""?>" placeholder="<?php echo lang("Password"); ?>">
+                    <div class="input-icon-group">
+                      <span class="input-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none">
+                          <rect x="4" y="10" width="16" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/>
+                          <path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                        </svg>
+                      </span>
+                      <input type="password" name="password" id="password" class="form-control" value="<?=(isset($cookie_pass) && $cookie_pass != "") ? $cookie_pass : ""?>" placeholder="Enter your password">
+                    </div>
                   </div>
 
                   <div class="form-group mt-20">
@@ -69,6 +88,11 @@
                   <?php echo $social_login_html?>
 
                 <?php echo form_close(); ?>
+                <div class="trust-badges">
+                  <span>✔ Secure login</span>
+                  <span>✔ No spam</span>
+                  <span>✔ 24/7 support</span>
+                </div>
 
                 <?php if (!session('uid')) : ?>
                   <p class="login-card-footer-text"><?=lang("dont_have_account_yet")?> <a href="<?=cn('auth/signup')?>" class="text-reset"><?=lang("Sign_Up")?></a></p>
