@@ -84,7 +84,7 @@
       </div>
 
       <div id="terms" class="terms-section">
-        <?php if (get_theme() === 'nico') : ?>
+        <h2>Terms & Conditions</h2>
           <p>Welcome to Boosty SMM Panel.</p>
           <p>By using our services, you agree to the following terms:</p>
           <ol>
@@ -114,9 +114,6 @@
             <li><strong>Changes</strong> - We can update these terms anytime without notice.</li>
           </ol>
           <p>By using our panel, you accept all these terms</p>
-        <?php else : ?>
-          <?php echo get_option("terms_content", ""); ?>
-        <?php endif; ?>
       </div>
 
       <div id="privacy" class="terms-section">
