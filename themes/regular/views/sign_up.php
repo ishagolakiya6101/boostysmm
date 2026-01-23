@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
              <div class="row">
-              <div class="col-md-6">
+              <!-- <div class="col-md-6">
                   <div class="input-icon mb-3">
                     <span class="input-icon-addon">
                       <i class="fe fe-user"></i>
@@ -35,7 +35,7 @@
                     <input type="text" class="form-control" name="last_name" placeholder="<?=lang("last_name")?>" required>
                   </div>  
                 </div>
-              </div>
+              </div> -->
 
               <div class="input-icon mb-3">
                 <span class="input-icon-addon">
@@ -80,7 +80,7 @@
                 <input type="password" class="form-control" name="re_password" placeholder="<?=lang("Confirm_password")?>" required>
               </div>
 
-              <div class="input-icon mb-3">
+              <!-- <div class="input-icon mb-3">
                 <span class="input-icon-addon">
                   <i class="fe fe-clock"></i>
                 </span>
@@ -97,7 +97,7 @@
                   <option value="<?=$time_zone['zone']?>" <?=($user_timezone == $time_zone["zone"])? 'selected': ''?>><?=$time_zone['time']?></option>
                   <?php }}?>
                 </select>
-              </div>
+              </div> -->
             </div>
             
             <?php
