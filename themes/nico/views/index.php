@@ -36,24 +36,24 @@
     <style>
         body {
             font-family: "Poppins", "Inter", "Montserrat", sans-serif;
-            background: #0b0f19;
-            color: #e2e8f0;
+            background: #f8fafc;
+            color: #0f172a;
         }
         .navbar-custom {
-            background: #0b0f19;
-            box-shadow: 0 10px 30px rgba(2, 6, 23, 0.5);
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
         }
         .header {
-            background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.18), transparent 55%),
-                        radial-gradient(circle at top right, rgba(34, 197, 94, 0.12), transparent 60%);
+            background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.10), transparent 55%),
+                        radial-gradient(circle at top right, rgba(34, 197, 94, 0.08), transparent 60%);
         }
         .header .text-container h1,
         .section-header .h2-heading,
         .section-header h2 {
-            color: #f8fafc;
+            color: #0f172a;
         }
         .header .text-container .p-large {
-            color: #cbd5f5;
+            color: #475569;
         }
         .btn-login-green {
             background: #22c55e;
@@ -83,19 +83,19 @@
             margin-top: 20px;
         }
         .trust-badge {
-            background: #111827;
-            border: 1px solid #1f2937;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
             border-radius: 10px;
             padding: 10px 14px;
             font-size: 14px;
-            color: #e2e8f0;
+            color: #1e293b;
         }
         .why-choose-us .box,
         .work-process-area .single_work_step,
         .services-preview .service-card,
         .contact-strip .contact-card {
-            background: #111827;
-            border: 1px solid #1f2937;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
             border-radius: 14px;
         }
         .services-preview .service-card {
@@ -105,7 +105,7 @@
         }
         .services-preview .service-card i {
             font-size: 28px;
-            color: #60a5fa;
+            color: #2563eb;
             margin-bottom: 8px;
         }
         .contact-strip .contact-card {
@@ -113,13 +113,13 @@
             text-align: center;
         }
         .footer {
-            background: #0b0f19;
+            background: #f1f5f9;
         }
         .footer a {
-            color: #cbd5f5;
+            color: #1e293b;
         }
         .footer-bottom {
-            border-top: 1px solid #1f2937;
+            border-top: 1px solid #e2e8f0;
         }
     </style>
 	<!-- Favicon  -->
