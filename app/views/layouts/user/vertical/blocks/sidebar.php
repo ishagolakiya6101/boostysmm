@@ -63,7 +63,7 @@
   <div class="mobile-logo">
     <a href="<?php echo cn('statistics'); ?>" class="navbar-brand text-inherit">
       <img src="<?=get_option('website_logo', BASE."assets/images/logo.png")?>" alt="Website Logo" class="hide-navbar-folded navbar-brand-logo">
-      <img src="<?=get_option('website_logo_mark', BASE."assets/images/logo.png")?>" alt="Website Logo" class="hide-navbar-expanded navbar-brand-logo">
+      <img src="<?=get_option('website_logo', BASE."assets/images/logo.png")?>" alt="Website Logo" class="hide-navbar-expanded navbar-brand-logo">
     </a>
     <button type="button" class="sidebar-close d-lg-none" aria-label="Close sidebar">
       <i class="fe fe-x"></i>
