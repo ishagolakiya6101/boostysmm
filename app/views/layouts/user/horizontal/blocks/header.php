@@ -20,8 +20,8 @@
   } else {
     $balance = currency_format($balance);
   }
-  $current_balance = get_option('currency_symbol',"$") . $balance;
-  $nav_item_user_title = sprintf('%s! <span class="text-uppercase">%s</span>', lang('Hi'), current_logged_user()->first_name);
+  $current_balance = get_option('currency_symbol',"INR") . $balance;
+  $nav_item_user_title = sprintf('%s! <span class="text-uppercase">%s</span>', lang('Hi! Happy'), current_logged_user()->first_name);
 ?>
 
 <div class="header top  py-4">
