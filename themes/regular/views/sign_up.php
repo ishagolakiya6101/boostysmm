@@ -18,24 +18,24 @@
               <h5><?=lang("register_now")?></h5>
             </div>
             <div class="form-group">
-//              <div class="row">
-//              <div class="col-md-6">
-//                  <div class="input-icon mb-3">
-  //                  <span class="input-icon-addon">
-    //                  <i class="fe fe-user"></i>
-      //              </span>
-        //            <input type="text" class="form-control" name="first_name" placeholder="<?=lang("first_name")?>"  required>
-          //        </div>
-      //          </div>
-       //         <div class="col-md-6">
-      //            <div class="input-icon mb-3">
-         //           <span class="input-icon-addon">
-    //                  <i class="fe fe-user"></i>
-      //              </span>
-        //            <input type="text" class="form-control" name="last_name" placeholder="<?=lang("last_name")?>" required>
-          //        </div>  
-            //    </div>
-            //  </div>
+             <div class="row">
+              <div class="col-md-6">
+                  <div class="input-icon mb-3">
+                    <span class="input-icon-addon">
+                      <i class="fe fe-user"></i>
+                    </span>
+                    <input type="text" class="form-control" name="first_name" placeholder="<?=lang("first_name")?>"  required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="input-icon mb-3">
+                    <span class="input-icon-addon">
+                      <i class="fe fe-user"></i>
+                    </span>
+                    <input type="text" class="form-control" name="last_name" placeholder="<?=lang("last_name")?>" required>
+                  </div>  
+                </div>
+              </div>
 
               <div class="input-icon mb-3">
                 <span class="input-icon-addon">
