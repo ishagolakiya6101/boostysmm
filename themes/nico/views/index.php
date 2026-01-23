@@ -120,6 +120,10 @@
             padding-top: 30px;
             padding-bottom: 5px;
         }
+        .header .header-content {
+            padding-top: 5rem !important;
+            padding-bottom: 3rem !important;
+        }
         .section-header {
             margin-bottom: 24px;
         }
