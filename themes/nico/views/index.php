@@ -385,15 +385,15 @@
             <div class="row">
                 <div class="col-md-4 contact-card">
                     <h4>Telegram Support</h4>
-                    <a href="<?=get_option('telegram_link', 'https://t.me/boostysmm_support')?>" target="_blank" rel="noopener">t.me/boostysmm_support</a>
+                    <a href="<?=get_option('telegram_link', 'https://t.me/boostysmm')?>" target="_blank" rel="noopener">boostysmm</a>
                 </div>
                 <div class="col-md-4 contact-card">
                     <h4>WhatsApp Support</h4>
-                    <a href="<?=get_option('whatsapp_link', 'https://wa.me/919999999999')?>" target="_blank" rel="noopener"><?=get_option('whatsapp_number', '+91 99999 99999')?></a>
+                    <a href="<?=get_option('whatsapp_link', 'https://wa.me/918625087427')?>" target="_blank" rel="noopener"><?=get_option('whatsapp_number', '+91 86250 87427')?></a>
                 </div>
                 <div class="col-md-4 contact-card">
                     <h4>Support Email</h4>
-                    <a href="mailto:<?=get_option('support_email', 'support@boostysmm.com')?>"><?=get_option('support_email', 'support@boostysmm.com')?></a>
+                    <a href="mailto:<?=get_option('support_email', 'boostysmmcontact@gmail.com')?>"><?=get_option('support_email', 'boostysmmcontact@gmail.com')?></a>
                 </div>
             </div>
         </div>
