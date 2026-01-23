@@ -10,7 +10,7 @@
         <div class="col-md-6 auth-left">
           <div class="auth-left-inner">
             <a href="<?=cn();?>" class="auth-logo">
-              <img src="<?=get_option('website_logo', BASE."assets/images/logo.png")?>" alt="logo" class="logo-lg">
+              <img src="<?=get_option('website_logo', BASE."assets/images/logo.png")?>" alt="logo" class="website-logo">
             </a>
             <h2 class="auth-headline">Grow your social media with BoostySMM</h2>
             <p class="auth-subtext">Fast, affordable & <h4>trusted</h4> SMM services</p>
