@@ -112,6 +112,22 @@
             padding: 18px;
             text-align: center;
         }
+        section {
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+        .header {
+            padding-top: 110px;
+            padding-bottom: 60px;
+        }
+        .section-header {
+            margin-bottom: 24px;
+        }
+        .services-preview .row,
+        .why-choose-us .row,
+        .work-process-area .row {
+            row-gap: 16px;
+        }
         .footer {
             background: #0b0f19;
         }
