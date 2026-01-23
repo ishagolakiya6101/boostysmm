@@ -89,7 +89,8 @@
                 <?=lang("save_time_managing_your_social_account_in_one_panel_where_people_buy_smm_services_such_as_facebook_ads_management_instagram_youtube_twitter_soundcloud_website_ads_and_many_more")?>
               </div>
               <div class="btn m-t-50">
-                <a href="<?=cn('auth/signup')?>" class="btn btn-pill btn-outline-primary sign-up btn-lg"><?=lang("get_start_now")?></a>
+                <a href="<?=cn('auth/signup')?>" class="btn btn-pill btn-outline-primary sign-up btn-lg"><?=lang("sign_up")?></a>
+                <a href="<?=cn('auth/login')?>" class="btn btn-pill btn-outline-primary sign-up btn-lg"><?=lang("login")?></a>
               </div>
             </div>
           </div>
