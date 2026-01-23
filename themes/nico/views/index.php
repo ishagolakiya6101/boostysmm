@@ -113,13 +113,13 @@
             text-align: center;
         }
         .footer {
-            background: #f1f5f9;
+            background: #0b0f19;
         }
         .footer a {
-            color: #1e293b;
+            color: #cbd5f5;
         }
         .footer-bottom {
-            border-top: 1px solid #e2e8f0;
+            border-top: 1px solid #1f2937;
         }
     </style>
 	<!-- Favicon  -->
