@@ -21,7 +21,7 @@
     $balance = currency_format($balance);
   }
   $current_balance = get_option('currency_symbol',"INR") . $balance;
-  $nav_item_user_title = sprintf('%s! <span class="text-uppercase">%s</span>', lang('Hi! Happy'), current_logged_user()->first_name);
+  $nav_item_user_title = sprintf('%s! <span class="text-uppercase">%s</span>', 'Hi! Happy ', current_logged_user()->first_name);
 ?>
 
 <div class="header top  py-4">
