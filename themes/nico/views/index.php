@@ -113,8 +113,8 @@
             text-align: center;
         }
         section {
-            padding-top: 40px;
-            padding-bottom: 40px;
+            padding-top: 30px;
+            padding-bottom: 30px;
         }
         .header {
             padding-top: 110px;
@@ -122,6 +122,17 @@
         }
         .section-header {
             margin-bottom: 24px;
+        }
+        .why-choose-us,
+        .services-preview,
+        .work-process-area {
+            padding-top: 24px;
+            padding-bottom: 24px;
+        }
+        .why-choose-us .section-header,
+        .services-preview .section-header,
+        .work-process-area .section-header {
+            margin-bottom: 16px;
         }
         .services-preview .row,
         .why-choose-us .row,
