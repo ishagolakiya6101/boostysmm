@@ -122,7 +122,7 @@
         }
         .header .header-content {
             padding-top: 5rem !important;
-            padding-bottom: 3rem !important;
+            padding-bottom: 5rem !important;
         }
         .section-header {
             margin-bottom: 24px;
