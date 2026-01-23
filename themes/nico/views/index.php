@@ -100,8 +100,8 @@
                         <div class="text-container">
                             <h1 data-aos="fade-up"><?php echo lang("the_best_social_media_panel_in_the_market"); ?></h1>
                             <p class="p-large" data-aos="fade-up" data-aos-delay="400"><?php echo lang("manage_all_social_media_networks_from_a_single_panel_quality_and_cheap_we_provide_services_on_todays_most_popular_social_networks_we_have_instagram_twitter_facebook_youtube_tiktok_spotify_and_many_more_services"); ?></p>
-                            <a class="btn btn-primary btn-getstarted" href="<?=cn('auth/signup')?>" data-aos="fade-up" data-aos-delay="600"><?=lang("sign_up")?> <i class="fas fa-arrow-right"></i> </a>
-                            <a class="btn btn-primary btn-getstarted" href="<?=cn('auth/login')?>" data-aos="fade-up" data-aos-delay="600"><?=lang("login")?> <i class="fas fa-arrow-right"></i> </a>
+                            <a class="btn btn-primary btn-getstarted" href="<?=cn('auth/signup')?>" data-aos="fade-up" data-aos-delay="600"><?=lang("sign_up")?> </i> </a>
+                            <a class="btn btn-primary btn-getstarted" href="<?=cn('auth/login')?>" data-aos="fade-up" data-aos-delay="600"><?=lang("login")?> </i> </a>
                         </div>
                     </div> 
                     <div class="col-lg-6 col-xl-6">
