@@ -20,7 +20,7 @@
   } else {
     $balance = currency_format($balance);
   }
-  $current_balance = get_option('currency_symbol',"INR") . $balance;
+  $current_balance = get_option('currency_symbol',"$") . $balance;
   $nav_item_user_title = sprintf('%s! <span class="text-uppercase">%s</span>', 'Hi! Happy ', current_logged_user()->first_name);
 ?>
 
