@@ -117,8 +117,8 @@
             padding-bottom: 30px;
         }
         .header {
-            padding-top: 110px;
-            padding-bottom: 60px;
+            padding-top: 50px;
+            padding-bottom: 30px;
         }
         .section-header {
             margin-bottom: 24px;
