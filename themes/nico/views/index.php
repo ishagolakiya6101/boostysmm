@@ -220,7 +220,7 @@
                     <div class="col-lg-6 col-xl-6">
                         <div class="text-container">
                             <h1 data-aos="fade-up">Boost Your Social Media Instantly</h1>
-                            <p class="p-large" data-aos="fade-up" data-aos-delay="400">Affordable & fast SMM services for Instagram, YouTube, Telegram & more.</p>
+                            <p class="p-large" data-aos="fade-up" data-aos-delay="400">India-focused SMM panel with fast INR payments & reliable support.</p>
                             <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
                                 <?php if (!session('uid')) : ?>
                                     <a class="btn btn-login-green" href="<?=cn('auth/login')?>">Login</a>
@@ -389,7 +389,7 @@
                 </div>
                 <div class="col-md-4 contact-card">
                     <h4>WhatsApp Support</h4>
-                    <a href="<?=get_option('whatsapp_link', 'https://wa.me/918625087427')?>" target="_blank" rel="noopener"><?=get_option('whatsapp_number', '+91 86250 87427')?></a>
+                    <a href="<?=get_option('whatsapp_link', 'https://wa.me/918625087427')?>" target="_blank" rel="noopener">+91 86250 87427</a>
                 </div>
                 <div class="col-md-4 contact-card">
                     <h4>Support Email</h4>
