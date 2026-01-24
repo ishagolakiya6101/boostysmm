@@ -295,6 +295,20 @@
         </div>
     </section>
 
+    <!-- refund/refill assurance -->
+    <section class="refund-assurance" data-aos="fade-up" style="background: #ffffff; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; padding: 24px 0;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <p style="color: #475569; font-size: 16px; margin: 0; line-height: 1.6;">
+                        <i class="fas fa-shield-alt" style="color: #22c55e; margin-right: 8px;"></i>
+                        <strong>Service Issue?</strong> We've got you covered. If you face any service problems, we provide refill or support assistance. Your satisfaction is our priority.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- services preview -->
     <section class="services-preview" data-aos="fade-up">
         <div class="container">
