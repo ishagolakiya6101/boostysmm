@@ -58,7 +58,7 @@
                   <div class="form-group">
                     <label for="projectinput5"><?=lang('Password')?></label>
                     <input class="form-control square" name="password" type="password">
-                    <small class="text-muted"><?=lang("note_if_you_dont_want_to_change_password_then_leave_these_password_fields_empty")?></small>
+                    <small class="text-muted">Note: Leave password fields empty if you don’t want to change it!</small>
                   </div>
                 </div> 
 
@@ -137,7 +137,7 @@
                 <div class="form-group">
                   <label for="projectinput5"><?=lang('Address')?></label>
                   <input class="form-control square" name="address" type="text" value="<?=(!empty($address))? $address: ''?>">
-                  <small class="text-muted"><?=lang("note_if_you_dont_want_add_more_information_then_leave_these_informations_fields_empty")?></small>
+                  <small class="text-muted">Note: These fields are optional. You can leave them empty.</small>
                 </div>
               </div>
               <div class="col-md-12 col-sm-12 col-xs-12 form-actions left">
