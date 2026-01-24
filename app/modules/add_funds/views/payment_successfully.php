@@ -23,7 +23,8 @@
 	            <p class="p-t-10"><?=lang("your_payment_has_been_processed_here_are_the_details_of_this_transaction_for_your_reference")?></p>
 	            <ul>
 	            	<li><?=lang("Transaction_ID")?>: <strong><?=(!empty($transaction) && $transaction['transaction_id'] == 'empty') ? $transaction['transaction_id'] . lang("transaction_id_was_sent_to_your_email") : $transaction['transaction_id'] ?></strong></li>
-	            	<li><?=lang("Amount_paid_includes_fee")?>: <strong><?=(!empty($transaction)) ? $transaction['amount'] : ''?> <?=get_option("currency_code", "USD")?></strong> </li>
+	            	<li>Amount Paid: <strong>₹<?=(!empty($transaction)) ? number_format($transaction['amount'], 2) : '0.00'?></strong> </li>
+	            	<p class="p-t-10 text-info"><strong>Payment received. Balance will be added after admin verification (5–30 minutes).</strong></p>
 	            </ul>
           	</div>
           </div>

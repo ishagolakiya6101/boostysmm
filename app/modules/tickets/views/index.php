@@ -3,7 +3,6 @@
   <div class="row justify-content-between">
     <div class="col-md-6">
       <h1 class="page-title d-flex">
-        <a href="<?=cn($controller_name . "/add")?>" class="d-inline-block d-sm-none ajaxModal "><span class="add-new" data-toggle="tooltip" data-placement="bottom" title="<?=lang("add_new")?>" data-original-title="Add new"><i class="fe fe-plus-square text-primary" aria-hidden="true"></i></span></a> 
         <span class="d-none d-sm-block"><i class="fa fa-comments-o text-primary" aria-hidden="true"></i></span> 
         &nbsp;<?=lang("Tickets")?>
       </h1>
@@ -16,6 +15,11 @@
         </div>
       </div>
     </div>
+    <div class="col-md-3 text-right">
+      <a href="<?=cn($controller_name . "/add")?>" class="btn btn-primary ajaxModal">
+        <i class="fe fe-plus"></i> Create New Ticket
+      </a>
+    </div>
   </div>
 </section>
 
@@ -24,8 +28,8 @@
   $form_subjects = [
     'subject_order'   => lang("Order"),
     'subject_payment' => lang("Payment"),
-    'subject_service' => lang("Service"),
-    'subject_other'   => lang("Other"),
+    'subject_api'     => lang("API"),
+    'subject_other'   => lang("General"),
   ];
   $form_request = [
     'refill'         => lang("Refill"),
@@ -52,7 +56,7 @@
       'class_main' => "col-md-12 col-sm-12 col-xs-12 subject-order",
     ],
     [
-      'label'      => form_label(lang('order_id')),
+      'label'      => form_label(lang('order_id') . ' <small class="text-muted">(Optional)</small>'),
       'element'    => form_input(['name' => 'orderid', 'value' => '', 'placeholder' => lang("for_multiple_orders_please_separate_them_using_comma_example_123451234512345"),'type' => 'text', 'class' => $class_element]),
       'class_main' => "col-md-12 col-sm-12 col-xs-12 subject-order",
     ],
@@ -68,7 +72,7 @@
     ],
     [
       'label'      => form_label(lang("Description")),
-      'element'    => form_textarea(['name' => 'description', 'value' => '', 'class' => $class_element]),
+      'element'    => form_textarea(['name' => 'description', 'value' => '', 'rows' => '6', 'class' => $class_element]),
       'class_main' => "col-md-12",
     ],
   ];
@@ -125,7 +129,12 @@
                 ?>
               </div>
             <?php }else{
-              echo show_empty_item();
+              echo '<div class="col-md-12 data-empty text-center">
+                <div class="content">
+                  <img class="img mb-1" src="'.BASE.'assets/images/ofm-nofiles.png" alt="Empty Data">
+                  <div class="title">No support tickets yet. Create a ticket if you need help.</div>
+                </div>
+              </div>';
             }?>  
           </div>
         </div>

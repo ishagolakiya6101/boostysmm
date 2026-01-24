@@ -15,8 +15,9 @@ class transactions extends My_UserController {
         $this->columns     =  array(
             "id"         => ['name' => '#',                            'class' => 'text-center'],
             "type"       => ['name' => lang('Payment_method'),         'class' => 'text-center'],
-            "amount"     => ['name' => lang("Amount_includes_fee"),    'class' => 'text-center'],
+            "amount"     => ['name' => 'Amount Paid',                  'class' => 'text-center'],
             "txn_fee"    => ['name' => lang("Transaction_fee"),        'class' => 'text-center'],
+            "status"     => ['name' => 'Status',                       'class' => 'text-center'],
             "created"    => ['name' => lang("Created"),                'class' => 'text-center'],
         );
     }

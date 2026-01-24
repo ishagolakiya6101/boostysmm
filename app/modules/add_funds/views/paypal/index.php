@@ -16,8 +16,8 @@
         </div>
 
         <div class="form-group">
-          <label><?=sprintf(lang("amount_usd"), $currency_code)?></label>
-          <input class="form-control square" type="number" name="amount" placeholder="<?php echo $min_amount; ?>">
+          <label>Amount (INR)</label>
+          <input class="form-control square" type="number" name="amount" placeholder="Enter amount in ₹">
         </div>                      
 
         <div class="form-group">
@@ -28,11 +28,11 @@
             ?>
             <li><?=lang("transaction_fee")?>: <strong><?php echo $tnx_fee; ?>%</strong></li>
             <?php } ?>
-            <li><?=lang("Minimal_payment")?>: <strong><?php echo $currency_symbol.$min_amount; ?></strong></li>
+            <li>Minimum: <strong>₹<?php echo number_format($min_amount, 2); ?></strong></li>
             <?php
               if ($max_amount > 0) {
             ?>
-            <li><?=lang("Maximal_payment")?>: <strong><?php echo $currency_symbol.$max_amount; ?></strong></li>
+            <li>Maximum: <strong>₹<?php echo number_format($max_amount, 2); ?></strong></li>
             <?php } ?>
             <li><?php echo lang("clicking_return_to_shop_merchant_after_payment_successfully_completed"); ?></li>
           </ul>
@@ -41,7 +41,7 @@
         <div class="form-group">
           <label class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" name="agree" value="1">
-            <span class="custom-control-label text-uppercase"><strong><?=lang("yes_i_understand_after_the_funds_added_i_will_not_ask_fraudulent_dispute_or_chargeback")?></strong></span>
+            <span class="custom-control-label">I have completed the payment and uploaded screenshot</span>
           </label>
         </div>
         

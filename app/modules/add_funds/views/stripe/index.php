@@ -59,8 +59,8 @@
   </div>
   <fieldset class="form-fieldset m-t-10">
     <div class="form-group">
-      <label class="form-label"><?=sprintf(lang("amount_usd"), get_option("currency_code",'USD'))?></label>
-      <input type="text" name="amount" class="form-control">
+      <label class="form-label">Amount (INR)</label>
+      <input type="text" name="amount" class="form-control" placeholder="Enter amount in ₹">
     </div>
     <div class="form-row mt15">
       <div id="card-element"></div>
@@ -79,11 +79,11 @@
         ?>
         <li><?=lang("transaction_fee")?>: <strong><?php echo $tnx_fee; ?>%</strong></li>
         <?php } ?>
-        <li><?=lang("Minimal_payment")?>: <strong><?php echo $currency_symbol.$min_amount; ?></strong></li>
+        <li>Minimum: <strong>₹<?php echo number_format($min_amount, 2); ?></strong></li>
         <?php
           if ($max_amount > 0) {
         ?>
-        <li><?=lang("Maximal_payment")?>: <strong><?php echo $currency_symbol.$max_amount; ?></strong></li>
+        <li>Maximum: <strong>₹<?php echo number_format($max_amount, 2); ?></strong></li>
         <?php } ?>
       </ul>
     </div>

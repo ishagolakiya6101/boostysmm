@@ -3,8 +3,8 @@
   $form_subjects = [
     'subject_order'   => lang("Order"),
     'subject_payment' => lang("Payment"),
-    'subject_service' => lang("Service"),
-    'subject_other'   => lang("Other"),
+    'subject_api'     => lang("API"),
+    'subject_other'   => lang("General"),
   ];
   $form_request = [
     'refill'         => lang("Refill"),
@@ -31,7 +31,7 @@
       'class_main' => "col-md-12 col-sm-12 col-xs-12 subject-order",
     ],
     [
-      'label'      => form_label(lang('order_id')),
+      'label'      => form_label(lang('order_id') . ' <small class="text-muted">(Optional)</small>'),
       'element'    => form_input(['name' => 'orderid', 'value' => '', 'placeholder' => lang("for_multiple_orders_please_separate_them_using_comma_example_123451234512345"),'type' => 'text', 'class' => $class_element]),
       'class_main' => "col-md-12 col-sm-12 col-xs-12 subject-order",
     ],
@@ -47,7 +47,7 @@
     ],
     [
       'label'      => form_label(lang("Description")),
-      'element'    => form_textarea(['name' => 'description', 'value' => '', 'class' => $class_element]),
+      'element'    => form_textarea(['name' => 'description', 'value' => '', 'rows' => '6', 'class' => $class_element]),
       'class_main' => "col-md-12",
     ],
   ];

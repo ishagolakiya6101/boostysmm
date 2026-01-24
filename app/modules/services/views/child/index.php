@@ -26,11 +26,11 @@
                 $item_price         = (double) $item['price'];
             ?>
               <tr class="tr_<?php echo esc($item['id']); ?> service-item" data-cate-id="<?= esc($item['cate_id']) ?>" data-id="<?= esc($item['id'])?>" data-name="<?= esc($item['name'])?>">
-                <?php if (session('uid')) :?>
+                <?php if (session('uid') && false) : // Hide favorite icon for now ?>
                   <td class="text-center w-1p">
                     <i class="favorite-icon fs-16 fa <?= $item['favorite'] ? $class_favorite : $class_unfavorite ?>" 
                       data-service-id="<?= $item['id'] ?>" 
-                      data-is-favorite="<?= $item['favorite'] ?>"
+                      data-is-favorite="<?= $item['favorite'] ?"
                       data-toggle="tooltip"
                       data-placement="top" 
                       title="" 
@@ -44,11 +44,25 @@
                   <?=esc($item['id']);?>
                 </td>
                 <td>
-                  <div class="title"><?=esc($item['name']);?></div>
+                  <div class="title">
+                    <?php
+                      // Clean service name - remove emojis, brackets, and extra formatting
+                      $clean_name = preg_replace('/[\x{1F300}-\x{1F9FF}]/u', '', $item['name']); // Remove emojis
+                      $clean_name = preg_replace('/\[.*?\]/', '', $clean_name); // Remove brackets and content
+                      $clean_name = preg_replace('/\(.*?\)/', '', $clean_name); // Remove parentheses and content
+                      $clean_name = trim($clean_name);
+                      echo esc($clean_name);
+                    ?>
+                  </div>
+                  <small class="text-muted">
+                    <?php if ($item['min'] && $item['max']): ?>
+                      Min <?=number_format($item['min'])?> | Max <?=number_format($item['max'])?>
+                    <?php endif; ?>
+                  </small>
                 </td>
-                <td class="text-center w-10p"><div><?=$item_price ;?></div></td>
-                <td class="text-center w-10p text-muted"><?=esc($item['min']) ?></td>
-                <td class="text-center w-10p text-muted"><?=esc($item['max'])?></td>
+                <td class="text-center w-10p"><div>₹<?=number_format($item_price, 2);?> per 1000</div></td>
+                <td class="text-center w-10p text-muted d-none"><?=esc($item['min']) ?></td>
+                <td class="text-center w-10p text-muted d-none"><?=esc($item['max'])?></td>
                 <?php if ((get_option("enable_average_time", 0) == 1)) : ?>
                   <td class="text-center w-15p">
                     <div>

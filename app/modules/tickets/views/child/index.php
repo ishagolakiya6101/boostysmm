@@ -2,25 +2,29 @@
     $item_link_detail = cn($controller_name ."/" . $item['id']);
     switch ($item['status']) {
         case 'closed':
-            $class_item_status = 'btn-gray-dark';
+            $class_item_status = 'btn-secondary';
+            $status_text = 'Closed';
             break;
 
         case 'pending':
-            $class_item_status = 'btn-info';
+            $class_item_status = 'btn-primary';
+            $status_text = 'Open';
             break;
 
         case 'answered':
-            $class_item_status = 'btn-gray';
+            $class_item_status = 'btn-success';
+            $status_text = 'Replied';
             break;
         
         default:
-            $class_item_status = 'btn-info';
+            $class_item_status = 'btn-primary';
+            $status_text = 'Open';
             break;
     }
     $xhtml_item_status = sprintf(
         '<span class="btn %s btn-sm">
             <small>%s</small>
-        </span>', $class_item_status, ticket_status_title($item['status'])
+        </span>', $class_item_status, $status_text
     );
 
     $class_subject = ($item['status'] == "closed") ? "text-muted" : "";

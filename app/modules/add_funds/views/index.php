@@ -99,6 +99,9 @@
         </div>
         <div class="content m-t-30">
           <?php echo htmlspecialchars_decode(get_option('manual_payment_content', ''), ENT_QUOTES)?>
+          <div class="alert alert-info mt-3">
+            <strong>UPI / PhonePe / Google Pay accepted</strong>
+          </div>
         </div>
       </div> 
     </div>
