@@ -170,24 +170,39 @@ class transactions_model extends MY_Model
                     'note'   => post("note"),
                     'status' => (int)post("status")
                 );
-                if (post("status") == 1 && $item['status'] == 0) {
-                    $new_amount = $item['amount'] - $item['txn_fee'];
+                $current_status = (int)$item['status'];
+                $target_status  = (int)post("status");
+                $balance_delta  = 0;
+
+                if ($target_status === 1 && $current_status !== 1) {
+                    $balance_delta = $item['amount'] - $item['txn_fee'];
+                } elseif ($target_status !== 1 && $current_status === 1) {
+                    $balance_delta = -($item['amount'] - $item['txn_fee']);
+                }
+
+                if ($balance_delta != 0) {
                     $item_user = $this->get('balance', $this->tb_users, ['id' => $item['uid']], '', '', true);
                     if (empty($item_user)) {
                         return ['status' => 'error', 'message' => 'There was some issue with your request'];
                     }
-                    $data_item_users = [
-                        "balance" => $item_user['balance'] + $new_amount,
-                    ];
-                    $this->db->update($this->tb_users, $data_item_users, ["id" => $item['uid']]);
 
-                    if ($this->db->affected_rows() > 0) {
-                        $data_tnx["old_balance"]   = $item_user['balance'];
-                    } else {
+                    $new_balance = $item_user['balance'] + $balance_delta;
+                    $data_item_users = [
+                        "balance" => $new_balance,
+                    ];
+
+                    $this->db->trans_start();
+                    $this->db->update($this->tb_users, $data_item_users, ["id" => $item['uid']]);
+                    $data_tnx["old_balance"] = $item_user['balance'];
+                    $this->db->update($this->tb_main, $data_tnx, ['ids' => post('ids')]);
+                    $this->db->trans_complete();
+
+                    if ($this->db->trans_status() === false) {
                         return ['status' => 'error', 'message' => 'There was some issue with your request'];
                     }
-                    
-                } 
+                    return ['status' => 'success', 'message' => 'Update successfully'];
+                }
+
                 $this->db->update($this->tb_main, $data_tnx, ['ids' => post('ids')]);
                 return ['status' => 'success', 'message' => 'Update successfully'];
                 break;

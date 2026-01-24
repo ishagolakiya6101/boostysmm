@@ -1,7 +1,7 @@
 <?php if (!empty($items)) : $i = $from; ?>
     <?php
        $i = $from;
-       $transactions_status = app_config('template')['transactions_status'];
+	       $transactions_status = app_config('template')['transactions_status'];
        $status_options = [
            '0'  => $transactions_status['0']['name'],
            '1'  => $transactions_status['1']['name'],
@@ -14,7 +14,7 @@
             $created            = show_item_datetime($item['created'], 'long');
             $show_item_buttons  = show_item_button_action($controller_name, $item['id']);
             $item_status        = show_item_status($controller_name, $item['id'], $item['status'], '', '');
-            $transaction_image  = '';
+$transaction_image  = '';
             if (!empty($item['transaction_id']) && preg_match('/\.(jpg|jpeg|png|gif)$/i', $item['transaction_id'])) {
                 $transaction_image = $item['transaction_id'];
             } elseif (!empty($item['note']) && preg_match('/\.(jpg|jpeg|png|gif)$/i', $item['note'])) {
@@ -53,7 +53,31 @@
             <td class="text-center w-5p text-muted"><?php echo $item['txn_fee']; ?></td>
             <td class="text-center w-10p"><?php echo show_high_light(esc($item['note']), $params['search'], 'note'); ?></td>
             <td class="text-center w-10p text-muted"><?php echo $created; ?></td>
-            <td class="text-center w-5p"><?php echo $item_status; ?></td>
+            <td class="text-center w-15p">
+                <?php if ($can_edit_status && array_key_exists((string)$item['status'], $status_options)) : ?>
+                    <?php
+                        $redirect_url = current_url();
+                        if (!empty($_SERVER['QUERY_STRING'])) {
+                            $redirect_url .= '?' . $_SERVER['QUERY_STRING'];
+                        }
+                        $form_attributes = [
+                            'class' => 'form actionForm',
+                            'data-redirect' => $redirect_url,
+                            'method' => 'POST',
+                        ];
+                        $form_hidden = ['ids' => $item['ids']];
+                    ?>
+                    <?php echo form_open(admin_url($controller_name . "/store"), $form_attributes, $form_hidden); ?>
+		       <input type="hidden" name="task" value="change-status">
+                        <?php echo form_dropdown('status', $status_options, (string)$item['status'], [
+                            'class' => 'form-control form-control-sm',
+                            'onchange' => 'this.form.submit()',
+                        ]); ?>
+                    <?php echo form_close(); ?>
+                <?php else : ?>
+                    <?php echo $item_status; ?>
+                <?php endif; ?>
+            </td>
             <td class="text-center w-5p"><?php echo $show_item_buttons; ?></td>
         </tr>
     <?php endforeach; ?>
