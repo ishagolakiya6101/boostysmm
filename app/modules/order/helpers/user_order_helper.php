@@ -187,7 +187,6 @@ function filter_categories_by_keyword($categories) {
     }
     $category_filter = [
       'everything'  => $config_social_media['everything'],
-      'favorite'    => $config_social_media['favorite'],
     ];
     $has_other = false;
     foreach ($categories as $cat) {
@@ -197,7 +196,7 @@ function filter_categories_by_keyword($categories) {
       $found_group = false;
 
       foreach ($config_social_media as $key => $info) {
-        if (in_array($key, ['everything', 'other'])) continue;
+        if (in_array($key, ['everything', 'other', 'favorite'])) continue;
 
         if (strpos($cat_name_lower, $key) !== false) {
           $category_filter[$key] = $info;
