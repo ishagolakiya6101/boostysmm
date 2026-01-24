@@ -7,16 +7,18 @@
         <h3 class="card-title"><?=lang("recent_orders")?></h3>
       </div>
       <div class="row">
-        <div class="col-sm-8">
+        <div class="<?= (isset($chart_and_orders_area['total_orders']) && $chart_and_orders_area['total_orders'] >= 5) ? 'col-sm-8' : 'col-sm-12' ?>">
           <div class="p-4 card">
             <div id="orders_chart_spline" style="height: 20rem;"></div>
           </div>
         </div>
+        <?php if (isset($chart_and_orders_area['total_orders']) && $chart_and_orders_area['total_orders'] >= 5): ?>
         <div class="col-sm-4">
           <div class="p-4 card">
             <div id="orders_chart_pie" style="height: 20rem;"></div>
           </div>
         </div>
+        <?php endif; ?>
       </div>
     </div>
   </div>

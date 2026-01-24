@@ -31,7 +31,9 @@ $sections = [
   const sectionCallbacks = {
     chartCallback: function(response) {
       Chart_template.chart_spline('#orders_chart_spline', JSON.parse(response.chart_spline));
-      Chart_template.chart_pie('#orders_chart_pie', JSON.parse(response.chart_pie));
+      if (response.total_orders >= 5) {
+        Chart_template.chart_pie('#orders_chart_pie', JSON.parse(response.chart_pie));
+      }
     }
   };
 

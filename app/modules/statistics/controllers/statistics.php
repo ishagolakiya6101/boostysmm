@@ -44,7 +44,8 @@ class statistics extends My_UserController
         echo json_encode(array(
             'html' => $html,
             'chart_spline' => $chart_and_orders_area['chart_spline'],  
-            'chart_pie' => $chart_and_orders_area['chart_pie']  
+            'chart_pie' => $chart_and_orders_area['chart_pie'],
+            'total_orders' => $chart_and_orders_area['total_orders']
         ));
     }
 

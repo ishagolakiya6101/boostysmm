@@ -23,12 +23,12 @@ class statistics_model extends MY_Model
         $total_tickets = $this->count_results('id', $this->tb_tickets, ['uid' => session('uid')]);
         $result = [
             'users' => [
-                'name' => lang("your_balance"),
+                'name' => "Available Balance",
                 'value' => $this->currency_symbol . currency_format($user_balance),
                 'class' => 'bg-success-gradient',
                 'icon' => 'fe fe-dollar-sign'],
             'transactions' => [
-                'name' => lang("total_amount_spent"),
+                'name' => "Total Spent",
                 'value' => $this->currency_symbol . currency_format($total_amount_sent),
                 'class' => 'bg-info-gradient',
                 'icon' => 'fe fe-dollar-sign'],
@@ -50,10 +50,12 @@ class statistics_model extends MY_Model
     {
 
         $data_pie = $this->data_chart_pie();
+        $total_orders = array_sum($data_pie);
         $result = [
             'chart_spline' => $this->replace_data_language($this->data_chart_spline()),
             'chart_pie' => $this->replace_data_language(json_encode($data_pie)),
             'orders_statistics' => $this->orders_statistics($data_pie),
+            'total_orders' => $total_orders,
         ];
 
         return $result;
