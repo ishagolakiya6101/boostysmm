@@ -47,7 +47,7 @@
     ],
     [
       'label'      => form_label(lang("Description")),
-      'element'    => form_textarea(['name' => 'description', 'value' => '', 'rows' => '6', 'class' => $class_element]),
+      'element'    => form_textarea(['name' => 'description', 'value' => '', 'rows' => '10', 'class' => $class_element]),
       'class_main' => "col-md-12",
     ],
   ];

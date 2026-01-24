@@ -81,16 +81,18 @@
                         <p class="p-t-10">
                           <small><?php echo lang("scan_the_qr_code_to_make_payment_then_upload_screenshot"); ?></small>
                         </p>
+                        <p class="text-success font-weight-bold">UPI / PhonePe / Google Pay accepted</p>
                       </div>
 
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label><?php echo sprintf(lang("amount_usd"), 'USD'); ?></label>
+                          <label>Amount (INR)</label>
                           <input class="form-control square"
                                  type="number"
                                  name="amount"
-                                 min="10"
-                                 max="1000"
+                                 min="200"
+                                 max="50000"
+                                 placeholder="min: 200, max: 50000"
                                  required>
                         </div>
 
@@ -106,10 +108,10 @@
                         <div class="form-group">
                           <label><?php echo lang("note"); ?></label>
                           <ul>
-                            <li><?php echo lang("Minimal_payment"); ?>: <strong>$10</strong></li>
-                            <li><?php echo lang("Maximal_payment"); ?>: <strong>$1000</strong></li>
+                            <li><?php echo lang("Minimal_payment"); ?>: <strong>₹200</strong></li>
+                            <li><?php echo lang("Maximal_payment"); ?>: <strong>₹50,000</strong></li>
                             <li><?php echo lang("upload_screenshot_after_payment"); ?></li>
-                            <li><?php echo lang("payment_will_be_verified_by_admin"); ?></li>
+                            <li>Payment received. Balance will be added after admin verification (5–30 minutes).</li>
                           </ul>
                         </div>
 
@@ -121,7 +123,7 @@
                                    value="1"
                                    required>
                             <span class="custom-control-label">
-                              <strong><?php echo lang("yes_i_have_made_the_payment_and_uploaded_screenshot"); ?></strong>
+                              <strong>I have completed the payment and uploaded screenshot</strong>
                             </span>
                           </label>
                         </div>
