@@ -47,8 +47,8 @@
         <div class="d-flex align-items-center">
             <img src="<?php echo BASE; ?>/assets/images/media-icon/instagram.png" alt="Instagram" class="mr-3 service-media-logo" alt="Icon" width="55" height="55">
             <div>
-                <h5 class="mb-1 badge bg-indigo service-id-title">ID: <span class="service-id-val">687</span></h5>
-                <p class="mb-0 fs-16 service-name">[𝐒𝐮𝐩𝐞𝐫 𝐂𝐡𝐞𝐚𝐩] Twitter Followers [5K] [5K/D - R30] [Instant - No Drop]</p>
+                <h5 class="mb-1 badge bg-indigo service-id-title">ID: <span class="service-id-val">--</span></h5>
+                <p class="mb-0 fs-16 service-name">Select a service to view details</p>
             </div>
         </div>
     </div>
@@ -100,13 +100,7 @@
     <div class="description">
         <h5 class="mb-1 text-muted"><?=lang("Description")?></h5>
         <div class="service-details">
-            ✅Worldwide Likes
-            <br>✅Start time - Instant
-            <br>✅Quality - Real
-            <br>✅Non Drop - Less drop
-            <br>✅No Refill
-            <br>
-            <br>⚠ Link: Facebook Post /Video/ Photo Link
+            Select a service to view description and details.
         </div>
     </div>
 </div>

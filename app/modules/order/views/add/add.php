@@ -10,6 +10,60 @@
     border: 1px solid #fcfaff;
     box-shadow: none;
   }
+  @media (max-width: 768px) {
+    .form-control.ajaxSearchService .selectize-input {
+      min-height: 48px;
+      padding: 12px 15px;
+    }
+  }
+  .nav-tabs .nav-link.mass-order-tab {
+    color: #6c757d;
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+  }
+  .nav-tabs .nav-link.mass-order-tab:hover {
+    color: #495057;
+    background-color: #e9ecef;
+  }
+  .nav-tabs .nav-link.mass-order-tab.active {
+    color: #495057;
+    background-color: #fff;
+  }
+  .quantity-min-max {
+    font-size: 12px;
+    color: #6c757d;
+    margin-top: 4px;
+  }
+  .quantity-warning {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 4px;
+    display: none;
+  }
+  .link-error {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 4px;
+    display: none;
+  }
+  .total-charge-section {
+    background: #f8f9fa;
+    border: 2px solid #22c55e;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+  }
+  .total-charge-section .total-charge-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 8px;
+  }
+  .total-charge-section .total-charge-amount {
+    font-size: 24px;
+    font-weight: 700;
+    color: #22c55e;
+  }
 </style>
 
 <?php
@@ -37,7 +91,7 @@
               <a class="active show" data-toggle="tab" href="#new_order"><i class="fa fa-clone"></i> <?=lang("single_order")?></a>
             </li>
             <li>
-              <a data-toggle="tab" href="#mass_order"><i class="fa fa-sitemap"></i> <?=lang("mass_order")?></a>
+              <a class="mass-order-tab" data-toggle="tab" href="#mass_order"><i class="fa fa-sitemap"></i> <?=lang("mass_order")?></a>
             </li>
           </ul>
         </div>
@@ -57,8 +111,8 @@
 
                   <div class="form-group">
                     <label for=""><?= lang('Search_for_'); ?></label>
-                    <select name="search_service_id" class="ajaxSearchService input-search-service form-control custom-select" placeholder="Search for...">
-                      <option value=""></option>
+                    <select name="search_service_id" class="ajaxSearchService input-search-service form-control custom-select" data-placeholder="Search service by name or ID">
+                      <option value="">Search service by name or ID</option>
                       <?php
                         if ($items_service) {
 
@@ -67,9 +121,18 @@
                           });
 
                           foreach ($items_service as $key => $service) {
-                            $service_rate = $app_currency_symbol . (double)$service['price'];
-                            $service_name = sprintf('%s - %s [%s]', $service['id'], $service['name'], $service_rate);
-                            $option = sprintf('<option value="%s"> %s</option>', $service['id'], $service_name);
+                            // Clean service name - remove emojis, brackets, and extra formatting
+                            $clean_name = preg_replace('/[\x{1F300}-\x{1F9FF}]/u', '', $service['name']); // Remove emojis
+                            $clean_name = preg_replace('/\[.*?\]/', '', $clean_name); // Remove brackets and content
+                            $clean_name = preg_replace('/\(.*?\)/', '', $clean_name); // Remove parentheses and content
+                            $clean_name = trim($clean_name);
+                            $service_name = sprintf('%s - %s', $service['id'], $clean_name);
+                            $option = sprintf('<option value="%s" data-price="%s" data-min="%s" data-max="%s">%s</option>', 
+                              $service['id'], 
+                              $service['price'], 
+                              $service['min'], 
+                              $service['max'],
+                              $service_name);
                             echo $option;
                           }
                         } 
@@ -122,12 +185,15 @@
                   
                   <div class="form-group order-default-link">
                     <label><?=lang("Link")?></label>
-                    <input class="form-control square" type="text" name="link" placeholder="https://" id="">
+                    <input class="form-control square" type="text" name="link" placeholder="Paste your Instagram post / reel link here" id="order_link_input">
+                    <div class="link-error" id="link_error_message">Please enter a valid link</div>
                   </div>
 
                   <div class="form-group order-default-quantity">
                     <label><?=lang("Quantity")?></label>
-                    <input class="form-control square ajaxQuantity" name="quantity" type="number">
+                    <input class="form-control square ajaxQuantity" name="quantity" type="number" id="order_quantity_input">
+                    <div class="quantity-min-max" id="quantity_min_max">Min: 0 - Max: 0</div>
+                    <div class="quantity-warning" id="quantity_warning"></div>
                   </div>
                   
                   <div class="form-group order-comments d-none">
@@ -181,9 +247,10 @@
 
                   <div class="form-group" id="result_total_charge">
                     <input type="hidden" name="total_charge" value="0.00">
-                    <p class="btn btn-info total_charge mt-3"><?=lang("total_charge")?>
-                      <?=$app_currency_symbol ?><span class="charge_number">0</span>
-                    </p>
+                    <div class="total-charge-section">
+                      <div class="total-charge-label"><?=lang("total_charge")?></div>
+                      <div class="total-charge-amount">₹<span class="charge_number">0</span></div>
+                    </div>
                     <div class="alert alert-icon alert-danger d-none" role="alert">
                       <i class="fe fe-alert-triangle mr-2" aria-hidden="true"></i><?=lang("order_amount_exceeds_available_funds")?>
                     </div>
@@ -260,7 +327,7 @@
 <script>
   const categories = <?php echo json_encode($filter_categories, JSON_UNESCAPED_UNICODE); ?>;
   const excludedKeywords = <?php echo json_encode(array_values($excluded_keywords)); ?>;
-  const app_currency_symbol = "<?= $app_currency_symbol; ?>";
+  const app_currency_symbol = "₹"; // Always use INR
   const services_list = <?php echo json_encode($items_service, JSON_UNESCAPED_UNICODE); ?>;
   const lang = {
     hours: "<?=lang('hours')?>",

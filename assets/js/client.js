@@ -12,7 +12,10 @@ $(document).ready(function () {
 
     // New Order Form
     if (searchServiceArea.length > 0) {
-        searchServiceArea.selectize();
+        searchServiceArea.selectize({
+            placeholder: 'Search service by name or ID',
+            allowEmptyOption: true
+        });
 
         const new_order_elements1111 = {
             defaultLink: $("#new_order .order-default-link"),
@@ -146,10 +149,20 @@ $(document).ready(function () {
                     is_matched_item = true;
                 }
                 if (is_matched_item) {
-                    var itemName = item.id + ' - ' + item.name + ' - [' + app_currency_symbol + item.price + ']';
+                    // Clean service name - remove emojis, brackets, and extra formatting
+                    var cleanName = item.name || '';
+                    cleanName = cleanName.replace(/[\u{1F300}-\u{1F9FF}]/gu, ''); // Remove emojis
+                    cleanName = cleanName.replace(/\[.*?\]/g, ''); // Remove brackets and content
+                    cleanName = cleanName.replace(/\(.*?\)/g, ''); // Remove parentheses and content
+                    cleanName = cleanName.trim();
+                    
+                    var itemName = item.id + ' - ' + cleanName;
                     var option = $('<option></option>')
                         .val(item.id)
-                        .text(itemName);
+                        .text(itemName)
+                        .data('min', item.min || 0)
+                        .data('max', item.max || 0)
+                        .data('price', item.price || 0);
                     serviceSelect.append(option);
 
                     if (!firstServiceId) {
@@ -173,6 +186,36 @@ $(document).ready(function () {
         $(document).on("input click", ".ajaxQuantity, .ajaxDripFeedRuns, .is_drip_feed", function () {
             var service = getSelectedService('data');
             updateTotal(service);
+            
+            // Validate quantity
+            if (service) {
+                var quantity = new_order_inputs.quantity.val();
+                var validation = validateQuantity(quantity, service.min || 0, service.max || 0);
+                var warningEl = $("#quantity_warning");
+                if (warningEl.length) {
+                    if (!validation.valid && quantity !== '') {
+                        warningEl.text(validation.message).show();
+                    } else {
+                        warningEl.hide();
+                    }
+                }
+            }
+        });
+        
+        // Validate link input
+        $(document).on("blur input", "#order_link_input", function () {
+            var link = $(this).val();
+            var validation = validateLink(link);
+            var errorEl = $("#link_error_message");
+            if (errorEl.length) {
+                if (!validation.valid && link !== '') {
+                    errorEl.text(validation.message).show();
+                    $(this).addClass('is-invalid');
+                } else {
+                    errorEl.hide();
+                    $(this).removeClass('is-invalid');
+                }
+            }
         });
 
         // ajax_custom_comments, ajax_custom_lists
@@ -201,6 +244,10 @@ $(document).ready(function () {
                 resetForm();
                 updateOrderResume(selectedService.data);
                 prepareOrderForm(selectedService.data);
+                
+                // Update quantity min/max when service changes
+                var service = selectedService.data;
+                updateQuantityMinMax(service.min || 0, service.max || 0);
             } else {
                 return;
             }
@@ -352,6 +399,7 @@ $(document).ready(function () {
             }
             inputCharge = preparePrice(inputCharge);
             new_order_inputs.totalCharge.val(inputCharge);
+            // Always show INR (₹) currency
             $("#new_order .charge_number").html(inputCharge);
         }
 
@@ -369,6 +417,13 @@ $(document).ready(function () {
         function updateOrderResume(service) {
             if ($("#order_resume").length > 0) {
                 var serviceName = service?.name || "";
+                
+                // Clean service name for display
+                var cleanName = serviceName;
+                cleanName = cleanName.replace(/[\u{1F300}-\u{1F9FF}]/gu, ''); // Remove emojis
+                cleanName = cleanName.replace(/\[.*?\]/g, ''); // Remove brackets and content
+                cleanName = cleanName.replace(/\(.*?\)/g, ''); // Remove parentheses and content
+                cleanName = cleanName.trim();
 
                 var rawDesc = service?.desc || "N/a";
                 order_resume_elements.serviceDescription.text(rawDesc);
@@ -380,15 +435,58 @@ $(document).ready(function () {
                 order_resume_elements.serviceMax.html(service?.max || 0);
 
                 var logoPath = PATH + `/assets/images/media-icon/${getServiceLogo(serviceName)}`;
-                order_resume_elements.serviceName.html(serviceName);
+                order_resume_elements.serviceName.html(cleanName);
                 order_resume_elements.serviceMediaLogo
                     .attr("src", logoPath)
-                    .attr("alt", serviceName + " logo")
-                    .attr("title", serviceName)
+                    .attr("alt", cleanName + " logo")
+                    .attr("title", cleanName)
                     .on("error", function () {
                         $(this).attr("src", PATH + "/assets/images/media-icon/other.png");
                     });
+                
+                // Update quantity min/max display
+                updateQuantityMinMax(service?.min || 0, service?.max || 0);
             }
+        }
+        
+        function updateQuantityMinMax(min, max) {
+            var minMaxDisplay = $("#quantity_min_max");
+            if (minMaxDisplay.length) {
+                minMaxDisplay.text("Min: " + formatNumber(min) + " - Max: " + formatNumber(max));
+            }
+        }
+        
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        
+        function validateLink(link) {
+            if (!link || link.trim() === '') {
+                return { valid: false, message: 'Link is required' };
+            }
+            // Basic URL validation
+            var urlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+            if (!urlPattern.test(link.trim())) {
+                return { valid: false, message: 'Please enter a valid link (e.g., https://instagram.com/p/...)' };
+            }
+            return { valid: true, message: '' };
+        }
+        
+        function validateQuantity(quantity, min, max) {
+            if (!quantity || quantity === '') {
+                return { valid: false, message: '' };
+            }
+            var qty = parseInt(quantity, 10);
+            if (isNaN(qty)) {
+                return { valid: false, message: 'Please enter a valid number' };
+            }
+            if (qty < min) {
+                return { valid: false, message: 'Quantity must be at least ' + formatNumber(min) };
+            }
+            if (qty > max) {
+                return { valid: false, message: 'Quantity cannot exceed ' + formatNumber(max) };
+            }
+            return { valid: true, message: '' };
         }
         
         function formatAvgTime(seconds) {
