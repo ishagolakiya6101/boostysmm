@@ -44,11 +44,20 @@
                   <?=esc($item['id']);?>
                 </td>
                 <td>
-                  <div class="title"><?=esc($item['name']);?></div>
+                  <?php
+                    // Clean up service name
+                    $name = $item['name'];
+                    // Remove emojis (basic range), brackets contents, and common technical tags
+                    $name = preg_replace('/[\x{1F600}-\x{1F6FF}|[\x{2600}-\x{26FF}]/u', '', $name);
+                    $name = preg_replace('/\s*[\(\[].*?[\)\]]/', '', $name); // Remove (text) or [text]
+                    $name = preg_replace('/(Speed|Refill|Type|Drop|Non-drop|Start Time|Day|Hour|Instant):.*$/i', '', $name);
+                    $name = preg_replace('/(Speed|Refill|Type|Drop|Non-drop|Start Time|Day|Hour|Instant):.*?(\||$)/i', '', $name);
+                    $name = trim($name, " \t\n\r\0\x0B-|");
+                  ?>
+                  <div class="title"><?=esc($name);?></div>
                 </td>
-                <td class="text-center w-10p"><div><?=$item_price ;?></div></td>
-                <td class="text-center w-10p text-muted"><?=esc($item['min']) ?></td>
-                <td class="text-center w-10p text-muted"><?=esc($item['max'])?></td>
+                <td class="text-center w-10p"><div>₹<?=number_format($item_price, 2); ?> per 1000</div></td>
+                <td class="text-center w-15p text-muted">Min <?=esc($item['min']) ?> | Max <?=esc($item['max'])?></td>
                 <?php if ((get_option("enable_average_time", 0) == 1)) : ?>
                   <td class="text-center w-15p">
                     <div>
