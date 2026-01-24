@@ -257,6 +257,12 @@
                 <div class="col-lg-12 section-header">
                     <div class="above-heading" data-aos="fade-up" data-aos-delay="200"><?php echo lang("why_choose_us"); ?></div>
                     <h2 class="h2-heading"  data-aos="fade-up" data-aos-delay="400">Why BoostySMM?</h2>
+                    <div class="col-lg-10 text-center">
+                        <p style="color: #475569; font-size: 16px; margin: 0; line-height: 1.6;">
+                            <i class="fas fa-shield-alt" style="color: #22c55e; margin-right: 8px;"></i>
+                            <strong>Service Issue?</strong> We've got you covered. If you face any service problems, we provide refill or support assistance. Your satisfaction is our priority.
+                        </p>
+                    </div>
                 </div> 
             </div>
             <div class="row">
