@@ -48,14 +48,8 @@
               <div class="col-md-6 col-sm-6 col-xs-6">
                 <div class="form-group">
                   <label for="projectinput5"><?=lang('Timezone')?></label>
-                  <select  name="timezone" class="form-control square">
-                    <?php $time_zones = tz_list();
-                      if (!empty($time_zones)) {
-                        foreach ($time_zones as $key => $time_zone) {
-                    ?>
-                    <option value="<?=$time_zone['zone']?>" <?= ($item_user_timezone== $time_zone["zone"]) ? 'selected': ''?>><?=$time_zone['time']?></option>
-                    <?php }}?>
-                  </select>
+                  <input type="text" class="form-control square" value="(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi" disabled>
+                  <input type="hidden" name="timezone" value="Asia/Kolkata">
                 </div>
               </div>
               

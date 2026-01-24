@@ -82,7 +82,7 @@ class profile extends My_UserController
             if ($this->db->update($this->tb_users, $data, ['id' => $id])) {
                 ms([
                     'status'  => 'success',
-                    'message' => lang('Update_successfully'),
+                    'message' => 'Profile updated successfully.',
                 ]);
             }
         } else {
