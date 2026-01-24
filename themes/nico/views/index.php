@@ -257,7 +257,7 @@
                 <div class="col-lg-12 section-header">
                     <div class="above-heading" data-aos="fade-up" data-aos-delay="200"><?php echo lang("why_choose_us"); ?></div>
                     <h2 class="h2-heading"  data-aos="fade-up" data-aos-delay="400">Why BoostySMM?</h2>
-                    <div class="col-lg-10 text-center">
+                    <div class="col-lg-12 text-center">
                         <p style="color: #475569; font-size: 16px; margin: 0; line-height: 1.6;">
                             <i class="fas fa-shield-alt" style="color: #22c55e; margin-right: 8px;"></i>
                             <strong>Service Issue?</strong> We've got you covered. If you face any service problems, we provide refill or support assistance. Your satisfaction is our priority.
@@ -302,7 +302,7 @@
     </section>
 
     <!-- refund/refill assurance -->
-    <section class="refund-assurance" data-aos="fade-up" style="background: #ffffff; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; padding: 24px 0;">
+    <!-- <section class="refund-assurance" data-aos="fade-up" style="background: #ffffff; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; padding: 24px 0;">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
@@ -313,7 +313,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- services preview -->
     <section class="services-preview" data-aos="fade-up">
