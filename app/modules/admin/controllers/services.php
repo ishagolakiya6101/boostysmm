@@ -170,6 +170,9 @@ class services extends My_AdminController
         if (! is_ajax_call()) {
             redirect(admin_url($this->controller_name));
         }
+        
+        ini_set('memory_limit', '512M');
+        set_time_limit(300);
 
         $item = $this->provider_model->get_item(['id' => post('provider_id')], ['task' => 'get-item']);
         if (! empty($item)) {
@@ -193,6 +196,18 @@ class services extends My_AdminController
                 if (! in_array($item['type'], ['realfans'])) {
                     usort($items_provider_service, function ($a, $b) {return $a['service'] - $b['service'];});
                 }
+                
+                $query = post('query');
+                if ($query) {
+                    $items_provider_service = array_filter($items_provider_service, function($s) use ($query) {
+                        return stripos($s['name'], $query) !== false || stripos($s['service'], $query) !== false;
+                    });
+                }
+                
+                // Paginating: Limit to 500 services to prevent 500 error
+                $limit = 500;
+                $items_provider_service = array_slice($items_provider_service, 0, $limit);
+
                 foreach ($items_provider_service as $key => $item) {
                     $data_attr = null;
                     foreach ($item as $attr => $value) {
@@ -204,6 +219,11 @@ class services extends My_AdminController
                         }
                         $item[$attr] = $value;
                     }
+                    
+                    // Optimization: Remove large description to save memory in dropdown list
+                    unset($item['description']);
+                    unset($item['desc']);
+                    
                     $json = json_encode($item, JSON_UNESCAPED_UNICODE);
                     $data_attr = ' data-api_service_infor="' . htmlspecialchars($json, ENT_QUOTES, 'UTF-8') . '"';
                     $class_selected = (post('provider_service_id') == $item['service']) ? 'selected' : '';
