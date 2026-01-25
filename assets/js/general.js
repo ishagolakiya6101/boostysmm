@@ -316,7 +316,7 @@ function General() {
                     if (_result.status == 'success' && _result.notification_type == 'place-order') {
                         setTimeout(function () {
                             show_success_message_place_order(_result);
-                        }, 500);
+                        }, 1000);
                         setTimeout(function () {
                             if (_redirect) {
                                 window.location.href = _redirect;
