@@ -323,7 +323,7 @@ function General() {
                             } else {
                                 location.reload();
                             }
-                        }, 2500);
+                        }, 3000);
                     } else {
                         if ($("#order_resume").length > 0) {
                             if (!$(".order-success").hasClass('d-none')) {
