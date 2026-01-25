@@ -90,9 +90,9 @@
                           <input class="form-control square"
                                  type="number"
                                  name="amount"
-                                 min="200"
+                                 min="100"
                                  max="50000"
-                                 placeholder="min: 200, max: 50000"
+                                 placeholder="min: 100, max: 50000"
                                  required>
                         </div>
 
@@ -108,7 +108,7 @@
                         <div class="form-group">
                           <label><?php echo lang("note"); ?></label>
                           <ul>
-                            <li><?php echo lang("Minimal_payment"); ?>: <strong>₹200</strong></li>
+                            <li><?php echo lang("Minimal_payment"); ?>: <strong>₹ 100</strong></li>
                             <li><?php echo lang("Maximal_payment"); ?>: <strong>₹50,000</strong></li>
                             <li><?php echo lang("upload_screenshot_after_payment"); ?></li>
                             <li>Payment received. Balance will be added after admin verification (5–30 minutes).</li>
