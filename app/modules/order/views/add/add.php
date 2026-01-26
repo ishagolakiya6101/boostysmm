@@ -64,60 +64,6 @@
     font-weight: 700;
     color: #22c55e;
   }
-
-  /* Premium Category/Service Select Styling */
-  .selectize-control.ajaxChangeCategory .selectize-input,
-  .selectize-control.ajaxChangeService .selectize-input {
-    min-height: 48px !important;
-    padding: 10px 15px !important;
-    border: 1px solid #e2e8f0 !important;
-    border-radius: 12px !important;
-    background: #fff !important;
-    display: flex !important;
-    align-items: center !important;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  }
-
-  .selectize-control.ajaxChangeCategory .selectize-input.focus,
-  .selectize-control.ajaxChangeService .selectize-input.focus {
-    border-color: #6366f1 !important;
-    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12) !important;
-  }
-
-  .selectize-dropdown.ajaxChangeCategory .option,
-  .selectize-dropdown.ajaxChangeService .option {
-    padding: 12px 15px !important;
-    transition: all 0.2s ease !important;
-    border-bottom: 1px solid #f8fafc;
-  }
-
-  .selectize-dropdown.ajaxChangeCategory .option:last-child,
-  .selectize-dropdown.ajaxChangeService .option:last-child {
-    border-bottom: none;
-  }
-
-  .selectize-dropdown.ajaxChangeCategory .active,
-  .selectize-dropdown.ajaxChangeService .active {
-    background-color: #f5f7ff !important;
-    color: #4f46e5 !important;
-  }
-
-  .selectize-control.ajaxChangeCategory .item,
-  .selectize-control.ajaxChangeService .item {
-    display: flex !important;
-    align-items: center !important;
-    gap: 12px !important;
-    font-weight: 500 !important;
-    color: #1e293b !important;
-  }
-
-  .selectize-control img, .selectize-dropdown img {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-    border-radius: 4px;
-  }
 </style>
 
 <?php
