@@ -122,17 +122,10 @@
 
                           foreach ($items_service as $key => $service) {
                             // Clean service name - remove emojis, brackets, and extra formatting
-                            $clean_name = preg_replace('/[\x{1F300}-\x{1F9FF}]/u', '', $service['name']); // Remove emojis
-                            $clean_name = preg_replace('/\[.*?\]/', '', $clean_name); // Remove brackets and content
-                            $clean_name = preg_replace('/\(.*?\)/', '', $clean_name); // Remove parentheses and content
-                            $clean_name = trim($clean_name);
-                            $service_name = sprintf('%s - %s', $service['id'], $clean_name);
-                            $option = sprintf('<option value="%s" data-price="%s" data-min="%s" data-max="%s">%s</option>', 
-                              $service['id'], 
-                              $service['price'], 
-                              $service['min'], 
-                              $service['max'],
-                              $service_name);
+                            $service_rate = $app_currency_symbol . (double)$service['price'];
+                            $service_name = sprintf('%s - %s [%s]', $service['id'], $service['name'], $service_rate);
+                            $option = sprintf('<option value="%s"> %s</option>', $service['id'], $service_name);
+
                             echo $option;
                           }
                         } 
