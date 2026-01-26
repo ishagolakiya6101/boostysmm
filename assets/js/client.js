@@ -91,15 +91,10 @@ $(document).ready(function () {
                 console.error("categories is not defined or not an array");
                 return;
             }
-
-            categorySelectize.clear();
-            categorySelectize.clearOptions();
-
-            var firstId = null;
+            categorySelect.empty();
 
             if (category === "favorite") {
-                categorySelectize.addOption({ value: '-1', text: 'Favorite services' });
-                firstId = '-1';
+                categorySelect.append($('<option>').val('-1').text('Favorite services'));
             }
             categories.forEach(item => {
                 const name = item.name || '';
@@ -110,14 +105,14 @@ $(document).ready(function () {
                     (category === "other" && isOtherCategory(name)) ||
                     lowerName.includes(category);
                 if (shouldInclude) {
-                    categorySelectize.addOption({ value: item.id, text: item.name });
+                    categorySelect.append($('<option>').val(item.id).text(item.name));
                     if (firstId === null) firstId = item.id;
                 }
             });
             if (firstId) {
-                categorySelectize.setValue(firstId);
+                categorySelect.val(firstId);
             }
-            categorySelectize.refreshOptions(false);
+            categorySelect.trigger('change');
         });
 
         // Change Service, search service
@@ -129,7 +124,7 @@ $(document).ready(function () {
 
                 // reset category
                 renderAllCategories();
-                categorySelectize.setValue(serviceData.cate_id);
+                categorySelect.val(serviceData.cate_id);
 
                 setTimeout(function () {
                     serviceSelect.val(selectedID).trigger("change");
@@ -141,8 +136,8 @@ $(document).ready(function () {
         });
 
         // ajaxChangeCategory
-        $(document).on("change", ".ajaxChangeCategory", function () {
-            var cate_id = categorySelectize.getValue();
+        $(document).on("change", ".ajaxChangeCategory", function () {            var cate_id = $('select[name=category_id] option:selected').val();
+            var cate_id = $('select[name=category_id] option:selected').val();
             if (cate_id == "") {
                 return;
             }
@@ -253,10 +248,10 @@ $(document).ready(function () {
         }
 
         function renderAllCategories() {
-            categorySelectize.clear();
-            categorySelectize.clearOptions();
+            categorySelectize.empty();
             categories.forEach(item => {
-                categorySelectize.addOption({ value: item.id, text: item.name });
+                const $option = $('<option>').val(item.id).text(item.name);
+                categorySelect.append($option);
             });
             categorySelectize.refreshOptions(false);
         }
