@@ -10,22 +10,6 @@ $(document).ready(function () {
     var categorySelect = $('.ajaxChangeCategory');
     var serviceSelect = $('.ajaxChangeService');
 
-    var categorySelectize = categorySelect.selectize({
-        render: {
-            option: function (item, escape) {
-                var logo = getServiceLogo(item.text);
-                return '<div class="option" style="display: flex; align-items: center; padding: 8px 12px;"><img src="' + PATH + '/assets/images/media-icon/' + logo + '" width="24" height="24" style="margin-right: 12px; flex-shrink: 0; object-fit: contain;"><span>' + escape(item.text) + '</span></div>';
-            },
-            item: function (item, escape) {
-                var logo = getServiceLogo(item.text);
-                return '<div class="item" style="display: flex; align-items: center;"><img src="' + PATH + '/assets/images/media-icon/' + logo + '" width="20" height="20" style="margin-right: 10px; flex-shrink: 0; object-fit: contain;"><span>' + escape(item.text) + '</span></div>';
-            }
-        },
-        onChange: function (value) {
-            categorySelect.trigger('change');
-        }
-    })[0].selectize;
-
     // New Order Form
     if (searchServiceArea.length > 0) {
         searchServiceArea.selectize({
