@@ -10,6 +10,22 @@ $(document).ready(function () {
     var categorySelect = $('.ajaxChangeCategory');
     var serviceSelect = $('.ajaxChangeService');
 
+    var categorySelectize = categorySelect.selectize({
+        render: {
+            option: function (item, escape) {
+                var logo = getServiceLogo(item.text);
+                return '<div class="option" style="display: flex; align-items: center; padding: 8px 12px;"><img src="' + PATH + '/assets/images/media-icon/' + logo + '" width="24" height="24" style="margin-right: 12px; flex-shrink: 0; object-fit: contain;"><span>' + escape(item.text) + '</span></div>';
+            },
+            item: function (item, escape) {
+                var logo = getServiceLogo(item.text);
+                return '<div class="item" style="display: flex; align-items: center;"><img src="' + PATH + '/assets/images/media-icon/' + logo + '" width="20" height="20" style="margin-right: 10px; flex-shrink: 0; object-fit: contain;"><span>' + escape(item.text) + '</span></div>';
+            }
+        },
+        onChange: function (value) {
+            categorySelect.trigger('change');
+        }
+    })[0].selectize;
+
     // New Order Form
     if (searchServiceArea.length > 0) {
         searchServiceArea.selectize({
@@ -70,7 +86,7 @@ $(document).ready(function () {
             sub_expiry: $("#new_order input[name=sub_expiry]"),
         };
 
-        
+
         // order_resume
         const order_resume_elements = {
             serviceId: $("#order_resume .service-id-val"),
@@ -91,9 +107,15 @@ $(document).ready(function () {
                 console.error("categories is not defined or not an array");
                 return;
             }
-            categorySelect.empty();
+
+            categorySelectize.clear();
+            categorySelectize.clearOptions();
+
+            var firstId = null;
+
             if (category === "favorite") {
-                categorySelect.append($('<option>').val('-1').text('Favorite services'));
+                categorySelectize.addOption({ value: '-1', text: 'Favorite services' });
+                firstId = '-1';
             }
             categories.forEach(item => {
                 const name = item.name || '';
@@ -104,11 +126,14 @@ $(document).ready(function () {
                     (category === "other" && isOtherCategory(name)) ||
                     lowerName.includes(category);
                 if (shouldInclude) {
-                    const $option = $('<option>').val(item.id).text(item.name);
-                    categorySelect.append($option);
+                    categorySelectize.addOption({ value: item.id, text: item.name });
+                    if (firstId === null) firstId = item.id;
                 }
             });
-            categorySelect.trigger('change');
+            if (firstId) {
+                categorySelectize.setValue(firstId);
+            }
+            categorySelectize.refreshOptions(false);
         });
 
         // Change Service, search service
@@ -120,7 +145,7 @@ $(document).ready(function () {
 
                 // reset category
                 renderAllCategories();
-                categorySelect.val(serviceData.cate_id).trigger("change");
+                categorySelectize.setValue(serviceData.cate_id);
 
                 setTimeout(function () {
                     serviceSelect.val(selectedID).trigger("change");
@@ -133,11 +158,11 @@ $(document).ready(function () {
 
         // ajaxChangeCategory
         $(document).on("change", ".ajaxChangeCategory", function () {
-            var cate_id = $('select[name=category_id] option:selected').val();
+            var cate_id = categorySelectize.getValue();
             if (cate_id == "") {
                 return;
             }
-            
+
             serviceSelect.empty();
             var firstServiceId = null;
             services_list.forEach(function (item) {
@@ -176,7 +201,7 @@ $(document).ready(function () {
         $(document).on("input click", ".ajaxQuantity, .ajaxDripFeedRuns, .is_drip_feed", function () {
             var service = getSelectedService('data');
             updateTotal(service);
-            
+
             // Validate quantity
             if (service) {
                 var quantity = new_order_inputs.quantity.val();
@@ -191,7 +216,7 @@ $(document).ready(function () {
                 }
             }
         });
-        
+
         // Validate link input
         $(document).on("blur input", "#order_link_input", function () {
             var link = $(this).val();
@@ -234,7 +259,7 @@ $(document).ready(function () {
                 resetForm();
                 updateOrderResume(selectedService.data);
                 prepareOrderForm(selectedService.data);
-                
+
                 // Update quantity min/max when service changes
                 var service = selectedService.data;
                 updateQuantityMinMax(service.min || 0, service.max || 0);
@@ -244,11 +269,12 @@ $(document).ready(function () {
         }
 
         function renderAllCategories() {
-            categorySelect.empty();
+            categorySelectize.clear();
+            categorySelectize.clearOptions();
             categories.forEach(item => {
-                const $option = $('<option>').val(item.id).text(item.name);
-                categorySelect.append($option);
+                categorySelectize.addOption({ value: item.id, text: item.name });
             });
+            categorySelectize.refreshOptions(false);
         }
 
         // prepareOrderForm
@@ -407,7 +433,7 @@ $(document).ready(function () {
         function updateOrderResume(service) {
             if ($("#order_resume").length > 0) {
                 var serviceName = service?.name || "";
-                
+
 
                 var rawDesc = service?.desc || "N/a";
                 order_resume_elements.serviceDescription.text(rawDesc);
@@ -427,23 +453,23 @@ $(document).ready(function () {
                     .on("error", function () {
                         $(this).attr("src", PATH + "/assets/images/media-icon/other.png");
                     });
-                
+
                 // Update quantity min/max display
                 updateQuantityMinMax(service?.min || 0, service?.max || 0);
             }
         }
-        
+
         function updateQuantityMinMax(min, max) {
             var minMaxDisplay = $("#quantity_min_max");
             if (minMaxDisplay.length) {
                 minMaxDisplay.text("Min: " + formatNumber(min) + " - Max: " + formatNumber(max));
             }
         }
-        
+
         function formatNumber(num) {
             return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
-        
+
         function validateLink(link) {
             if (!link || link.trim() === '') {
                 return { valid: false, message: 'Link is required' };
@@ -455,7 +481,7 @@ $(document).ready(function () {
             }
             return { valid: true, message: '' };
         }
-        
+
         function validateQuantity(quantity, min, max) {
             if (!quantity || quantity === '') {
                 return { valid: false, message: '' };
@@ -472,7 +498,7 @@ $(document).ready(function () {
             }
             return { valid: true, message: '' };
         }
-        
+
         function formatAvgTime(seconds) {
             if (seconds <= 0) {
                 return 'N/a';
@@ -505,7 +531,7 @@ $(document).ready(function () {
         function initializeSelectedCategoryAndService() {
             var urlParams = new URLSearchParams(window.location.search);
             var serviceIdFromUrl = urlParams.get('service');
-            
+
             var selectedCategoryId = null;
             var selectedServiceId = null;
             var item_service = null;
@@ -518,9 +544,9 @@ $(document).ready(function () {
                 selectedCategoryId = categorySelect.val();
                 selectedServiceId = serviceSelect.val();
             }
-            
+
             if (selectedCategoryId) {
-                categorySelect.val(selectedCategoryId).trigger("change");
+                categorySelectize.setValue(selectedCategoryId);
                 if (selectedServiceId) {
                     serviceSelect.val(selectedServiceId).trigger("change");
                 }
@@ -530,5 +556,5 @@ $(document).ready(function () {
         }
         initializeSelectedCategoryAndService();
     }
-    
+
 });

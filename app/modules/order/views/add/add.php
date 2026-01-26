@@ -64,6 +64,39 @@
     font-weight: 700;
     color: #22c55e;
   }
+
+  /* Category Selectize Styling */
+  .selectize-control.ajaxChangeCategory .selectize-input {
+    min-height: 45px;
+    padding: 10px 15px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+
+  .selectize-control.ajaxChangeCategory .selectize-input.focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+  }
+
+  .selectize-dropdown.ajaxChangeCategory .option {
+    padding: 10px 15px;
+    transition: background 0.2s;
+  }
+
+  .selectize-dropdown.ajaxChangeCategory .active {
+    background-color: #f5f7ff !important;
+    color: #4f46e5 !important;
+  }
+
+  .selectize-control.ajaxChangeCategory .item {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+  }
 </style>
 
 <?php
@@ -319,7 +352,7 @@
 ?>
 <script>
   const categories = <?php echo json_encode($filter_categories, JSON_UNESCAPED_UNICODE); ?>;
-  // const social_media_config = <?php echo json_encode(app_config('social_media'), JSON_UNESCAPED_UNICODE); ?>;
+  const social_media_config = <?php echo json_encode(app_config('social_media'), JSON_UNESCAPED_UNICODE); ?>;
   const excludedKeywords = <?php echo json_encode(array_values($excluded_keywords)); ?>;
   const app_currency_symbol = "₹"; // Always use INR
   const services_list = <?php echo json_encode($items_service, JSON_UNESCAPED_UNICODE); ?>;
