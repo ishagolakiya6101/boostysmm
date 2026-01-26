@@ -137,6 +137,7 @@
                     <label><?=lang("Category")?></label>
                     <select name="category_id" class="form-control square ajaxChangeCategory">
                       <?php $social_media = filter_categories_by_keyword($filter_categories); ?>
+                      <?php print_r($social_media); ?>
                       <?php if (!empty($filter_categories)):?>      
                         <?php foreach ($filter_categories as $key => $category) : ?>
                           <option value="<?=$category['id']?>"><?=$social_media[strtolower($category['name'])]['icon_class']; ?><?=$category['name']; ?></option>
