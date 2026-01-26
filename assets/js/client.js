@@ -525,6 +525,7 @@ $(document).ready(function () {
             }
 
             if (selectedCategoryId) {
+                console.log(selectedCategoryId);
                 categorySelectize.setValue(selectedCategoryId);
                 if (selectedServiceId) {
                     serviceSelect.val(selectedServiceId).trigger("change");
