@@ -149,20 +149,10 @@ $(document).ready(function () {
                     is_matched_item = true;
                 }
                 if (is_matched_item) {
-                    // Clean service name - remove emojis, brackets, and extra formatting
-                    var cleanName = item.name || '';
-                    cleanName = cleanName.replace(/[\u{1F300}-\u{1F9FF}]/gu, ''); // Remove emojis
-                    cleanName = cleanName.replace(/\[.*?\]/g, ''); // Remove brackets and content
-                    cleanName = cleanName.replace(/\(.*?\)/g, ''); // Remove parentheses and content
-                    cleanName = cleanName.trim();
-                    
-                    var itemName = item.id + ' - ' + cleanName;
+                    var itemName = item.id + ' - ' + item.name + ' - [' + app_currency_symbol + item.price + ']';
                     var option = $('<option></option>')
                         .val(item.id)
-                        .text(itemName)
-                        .data('min', item.min || 0)
-                        .data('max', item.max || 0)
-                        .data('price', item.price || 0);
+                        .text(itemName);
                     serviceSelect.append(option);
 
                     if (!firstServiceId) {
@@ -418,12 +408,6 @@ $(document).ready(function () {
             if ($("#order_resume").length > 0) {
                 var serviceName = service?.name || "";
                 
-                // Clean service name for display
-                var cleanName = serviceName;
-                cleanName = cleanName.replace(/[\u{1F300}-\u{1F9FF}]/gu, ''); // Remove emojis
-                cleanName = cleanName.replace(/\[.*?\]/g, ''); // Remove brackets and content
-                cleanName = cleanName.replace(/\(.*?\)/g, ''); // Remove parentheses and content
-                cleanName = cleanName.trim();
 
                 var rawDesc = service?.desc || "N/a";
                 order_resume_elements.serviceDescription.text(rawDesc);
@@ -435,11 +419,11 @@ $(document).ready(function () {
                 order_resume_elements.serviceMax.html(service?.max || 0);
 
                 var logoPath = PATH + `/assets/images/media-icon/${getServiceLogo(serviceName)}`;
-                order_resume_elements.serviceName.html(cleanName);
+                order_resume_elements.serviceName.html(serviceName);
                 order_resume_elements.serviceMediaLogo
                     .attr("src", logoPath)
-                    .attr("alt", cleanName + " logo")
-                    .attr("title", cleanName)
+                    .attr("alt", serviceName + " logo")
+                    .attr("title", serviceName)
                     .on("error", function () {
                         $(this).attr("src", PATH + "/assets/images/media-icon/other.png");
                     });
