@@ -248,12 +248,12 @@ $(document).ready(function () {
         }
 
         function renderAllCategories() {
-            categorySelectize.empty();
+            categorySelect.empty();
             categories.forEach(item => {
                 const $option = $('<option>').val(item.id).text(item.name);
                 categorySelect.append($option);
             });
-            categorySelectize.refreshOptions(false);
+            categorySelect.refreshOptions(false);
         }
 
         // prepareOrderForm
@@ -526,7 +526,7 @@ $(document).ready(function () {
 
             if (selectedCategoryId) {
                 console.log(selectedCategoryId);
-                categorySelectize.setValue(selectedCategoryId);
+                categorySelect.val(selectedCategoryId).trigger("change");
                 if (selectedServiceId) {
                     serviceSelect.val(selectedServiceId).trigger("change");
                 }
