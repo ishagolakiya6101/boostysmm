@@ -10,6 +10,38 @@ $(document).ready(function () {
     var categorySelect = $('.ajaxChangeCategory');
     var serviceSelect = $('.ajaxChangeService');
 
+    var categorySelectize = categorySelect.selectize({
+        render: {
+            option: function (item, escape) {
+                var logo = getServiceLogo(item.text);
+                return '<div class="option" style="display: flex; align-items: center; padding: 10px 15px;"><img src="' + PATH + '/assets/images/media-icon/' + logo + '" width="24" height="24" style="margin-right: 12px; flex-shrink: 0; object-fit: contain;"><span>' + escape(item.text) + '</span></div>';
+            },
+            item: function (item, escape) {
+                var logo = getServiceLogo(item.text);
+                return '<div class="item" style="display: flex; align-items: center;"><img src="' + PATH + '/assets/images/media-icon/' + logo + '" width="20" height="20" style="margin-right: 10px; flex-shrink: 0; object-fit: contain;"><span>' + escape(item.text) + '</span></div>';
+            }
+        },
+        onChange: function (value) {
+            categorySelect.trigger('change');
+        }
+    })[0].selectize;
+
+    var serviceSelectize = serviceSelect.selectize({
+        render: {
+            option: function (item, escape) {
+                var logo = getServiceLogo(item.text);
+                return '<div class="option" style="display: flex; align-items: center; padding: 10px 15px;"><img src="' + PATH + '/assets/images/media-icon/' + logo + '" width="24" height="24" style="margin-right: 12px; flex-shrink: 0; object-fit: contain;"><span>' + escape(item.text) + '</span></div>';
+            },
+            item: function (item, escape) {
+                var logo = getServiceLogo(item.text);
+                return '<div class="item" style="display: flex; align-items: center;"><img src="' + PATH + '/assets/images/media-icon/' + logo + '" width="20" height="20" style="margin-right: 10px; flex-shrink: 0; object-fit: contain;"><span>' + escape(item.text) + '</span></div>';
+            }
+        },
+        onChange: function (value) {
+            serviceSelect.trigger('change');
+        }
+    })[0].selectize;
+
     // New Order Form
     if (searchServiceArea.length > 0) {
         searchServiceArea.selectize({
@@ -91,11 +123,17 @@ $(document).ready(function () {
                 console.error("categories is not defined or not an array");
                 return;
             }
-            categorySelect.empty();
+
+            categorySelectize.clear();
+            categorySelectize.clearOptions();
+
+            var firstId = null;
 
             if (category === "favorite") {
-                categorySelect.append($('<option>').val('-1').text('Favorite services'));
+                categorySelectize.addOption({ value: '-1', text: 'Favorite services' });
+                firstId = '-1';
             }
+
             categories.forEach(item => {
                 const name = item.name || '';
                 const lowerName = name.toLowerCase();
@@ -104,15 +142,17 @@ $(document).ready(function () {
                     category === "everything" ||
                     (category === "other" && isOtherCategory(name)) ||
                     lowerName.includes(category);
+
                 if (shouldInclude) {
-                    categorySelect.append($('<option>').val(item.id).text(item.name));
+                    categorySelectize.addOption({ value: item.id, text: item.name });
                     if (firstId === null) firstId = item.id;
                 }
             });
+
             if (firstId) {
-                categorySelect.val(firstId);
+                categorySelectize.setValue(firstId);
             }
-            categorySelect.trigger('change');
+            categorySelectize.refreshOptions(false);
         });
 
         // Change Service, search service
@@ -124,10 +164,10 @@ $(document).ready(function () {
 
                 // reset category
                 renderAllCategories();
-                categorySelect.val(serviceData.cate_id);
+                categorySelectize.setValue(serviceData.cate_id);
 
                 setTimeout(function () {
-                    serviceSelect.val(selectedID).trigger("change");
+                    serviceSelectize.setValue(selectedID);
                 }, 200);
 
             } else {
@@ -136,13 +176,14 @@ $(document).ready(function () {
         });
 
         // ajaxChangeCategory
-        $(document).on("change", ".ajaxChangeCategory", function () {            var cate_id = $('select[name=category_id] option:selected').val();
-            var cate_id = $('select[name=category_id] option:selected').val();
+        $(document).on("change", ".ajaxChangeCategory", function () {
+            var cate_id = categorySelectize.getValue();
             if (cate_id == "") {
                 return;
             }
 
-            serviceSelect.empty();
+            serviceSelectize.clear();
+            serviceSelectize.clearOptions();
             var firstServiceId = null;
             services_list.forEach(function (item) {
                 var is_matched_item = false;
@@ -154,10 +195,7 @@ $(document).ready(function () {
                 }
                 if (is_matched_item) {
                     var itemName = item.id + ' - ' + item.name + ' - [' + app_currency_symbol + item.price + ']';
-                    var option = $('<option></option>')
-                        .val(item.id)
-                        .text(itemName);
-                    serviceSelect.append(option);
+                    serviceSelectize.addOption({ value: item.id, text: itemName });
 
                     if (!firstServiceId) {
                         firstServiceId = item.id;
@@ -166,13 +204,14 @@ $(document).ready(function () {
             });
             var selectedID = $('select[name=search_service_id] option:selected').val();
             if (firstServiceId != selectedID) {
-                serviceSelect.val(firstServiceId).trigger("change");
+                serviceSelectize.setValue(firstServiceId);
             }
+            serviceSelectize.refreshOptions(false);
         })
 
         // ajaxChangeService
         $(document).on("change", ".ajaxChangeService", function () {
-            var selectedID = $(this).val();
+            var selectedID = serviceSelectize.getValue();
             handleServiceChange(selectedID);
         });
 
@@ -248,12 +287,12 @@ $(document).ready(function () {
         }
 
         function renderAllCategories() {
-            categorySelect.empty();
+            categorySelectize.clear();
+            categorySelectize.clearOptions();
             categories.forEach(item => {
-                const $option = $('<option>').val(item.id).text(item.name);
-                categorySelect.append($option);
+                categorySelectize.addOption({ value: item.id, text: item.name });
             });
-            categorySelect.refreshOptions(false);
+            categorySelectize.refreshOptions(false);
         }
 
         // prepareOrderForm
@@ -525,10 +564,9 @@ $(document).ready(function () {
             }
 
             if (selectedCategoryId) {
-                console.log(selectedCategoryId);
-                categorySelect.val(selectedCategoryId).trigger("change");
+                categorySelectize.setValue(selectedCategoryId);
                 if (selectedServiceId) {
-                    serviceSelect.val(selectedServiceId).trigger("change");
+                    serviceSelectize.setValue(selectedServiceId);
                 }
             } else {
                 return;
