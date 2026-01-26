@@ -319,6 +319,7 @@
 ?>
 <script>
   const categories = <?php echo json_encode($filter_categories, JSON_UNESCAPED_UNICODE); ?>;
+  const social_media_config = <?php echo json_encode(app_config('social_media'), JSON_UNESCAPED_UNICODE); ?>;
   const excludedKeywords = <?php echo json_encode(array_values($excluded_keywords)); ?>;
   const app_currency_symbol = "₹"; // Always use INR
   const services_list = <?php echo json_encode($items_service, JSON_UNESCAPED_UNICODE); ?>;
