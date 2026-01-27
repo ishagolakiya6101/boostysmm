@@ -64,10 +64,6 @@
     font-weight: 700;
     color: #22c55e;
   }
-  .selectize-input input {
-    width: 100% !important;
-    min-width: 50px !important;
-  }
 
 </style>
 
