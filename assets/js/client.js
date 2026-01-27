@@ -455,7 +455,7 @@ $(document).ready(function () {
                 return { valid: false, message: 'Link is required' };
             }
             // Basic URL validation
-            var urlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+            var urlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w\.-]*)*(\?[\w=&%.-]*)?\/?$/;
             if (!urlPattern.test(link.trim())) {
                 return { valid: false, message: 'Please enter a valid link (e.g., https://instagram.com/p/...)' };
             }
