@@ -273,7 +273,6 @@
             <div class="row">
                 <div class="col-lg-3" data-aos="fade-up" data-aos-delay="600">
                   <div class="box">
-                    <img src="<?php echo BASE; ?>themes/nico/assets/images/home/great-quality.png" class="img-fluid" alt="">
                     <h3>Cheapest prices in India</h3>
                     <p>Lowest rates without compromising on service.</p>
                   </div>
@@ -281,7 +280,6 @@
       
                 <div class="col-lg-3 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="800">
                   <div class="box">
-                    <img src="<?php echo BASE; ?>themes/nico/assets/images/home/payment-methods.png" class="img-fluid" alt="">
                     <h3>Real quality services</h3>
                     <p>Consistent, reliable results you can trust.</p>
                   </div>
@@ -289,7 +287,6 @@
       
                 <div class="col-lg-3 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="1000">
                   <div class="box">
-                    <img src="<?php echo BASE; ?>themes/nico/assets/images/home/shoking-prices.png" class="img-fluid" alt="">
                     <h3>Instant order start</h3>
                     <p>Most orders begin within minutes.</p>
                   </div>
@@ -297,7 +294,6 @@
       
                 <div class="col-lg-3 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="1200">
                   <div class="box">
-                    <img src="<?php echo BASE; ?>themes/nico/assets/images/home/unbelievable-prices.png" class="img-fluid" alt="">
                     <h3>Trusted panel</h3>
                     <p>Secure, stable, and used by thousands.</p>
                   </div>
