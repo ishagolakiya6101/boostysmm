@@ -3,7 +3,7 @@
   .footer {
     color: #ffffffa6;
     background: #0b0f19;
-    padding: 60px 0;
+    padding-top: 60px;
   }
   .footer .logo img {
       max-height: 45px;
