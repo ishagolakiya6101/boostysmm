@@ -71,7 +71,7 @@
         }
         .hero-buttons .btn {
             margin-right: 12px;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             border-radius: 8px;
             padding: 12px 22px;
             font-weight: 600;
@@ -80,7 +80,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            margin-top: 20px;
+            margin-top: 12px;
         }
         @media (max-width: 991.98px) {
             .trust-badges {
@@ -106,7 +106,7 @@
         .services-preview .service-card {
             padding: 20px 12px;
             text-align: center;
-            margin-bottom: 16px;
+            margin-bottom: 8px;
         }
         .services-preview .service-card i {
             font-size: 28px;
@@ -118,30 +118,19 @@
             text-align: center;
         }
         section {
-            padding-top: 30px;
-            padding-bottom: 30px;
+            padding-top: 20px;
+            padding-bottom: 20px;
         }
         .header {
             padding-top: 30px;
             padding-bottom: 5px;
         }
         .header .header-content {
-            padding-top: 5rem !important;
-            padding-bottom: 5rem !important;
+            padding-top: 3rem !important;
+            padding-bottom: 3rem !important;
         }
         .section-header {
-            margin-bottom: 24px;
-        }
-        .why-choose-us,
-        .services-preview,
-        .work-process-area {
-            padding-top: 24px;
-            padding-bottom: 24px;
-        }
-        .why-choose-us .section-header,
-        .services-preview .section-header,
-        .work-process-area .section-header {
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
         .services-preview .row,
         .why-choose-us .row,
