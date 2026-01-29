@@ -2,11 +2,11 @@
 <style>
   .footer {
     font-family: "Poppins", "Inter", "Montserrat", sans-serif;
-    color: #0f172a;
+    color: #f5f5f5ff;
       background: #0b0f19;
   }
   .footer a {
-      color: #cbd5f5;
+      color: #1e253aff;
   }
   .footer-bottom {
       border-top: 1px solid #1f2937;
