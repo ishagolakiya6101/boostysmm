@@ -1024,12 +1024,12 @@ if (! function_exists('show_user_item_order_details')) {
                 break;
         }
         $xhtml_order_attr = null;
-        $xhtml_order_attr = '<ul style="margin: 0px;">';
+        $xhtml_order_attr = '<div class="order-details-scroll"><ul class="order-details-list" style="margin: 0px;">';
         foreach ($order_attrs as $key => $attr) {
             $attr_content = ucfirst($attr['name']) . ': ' . $attr['value'];
             $xhtml_order_attr .= sprintf('<li>%s</li>', $attr_content);
         }
-        $xhtml_order_attr .= '</ul>';
+        $xhtml_order_attr .= '</ul></div>';
         $service_name = $item['service_id'] . " - " . $item['service_name'];
         $xhtml .= sprintf(
             '<div class="title">

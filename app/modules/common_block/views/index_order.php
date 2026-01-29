@@ -1,6 +1,30 @@
 <?php 
   $show_search_area = show_search_area($controller_name, $params, 'user');
 ?>
+<style>
+  @media (max-width: 767.98px) {
+    .order-details-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 5px;
+      margin-top: 5px;
+    }
+    .order-details-list {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      gap: 15px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    .order-details-list li {
+      flex: 0 0 auto;
+      white-space: nowrap;
+      font-size: 12px;
+      color: #6e7687;
+    }
+  }
+</style>
 <div class="lists-index-ajax">
   <?php include('ajax_index_overplay.php'); ?>
 
