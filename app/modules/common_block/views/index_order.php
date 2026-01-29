@@ -2,12 +2,19 @@
   $show_search_area = show_search_area($controller_name, $params, 'user');
 ?>
 <style>
-  @media (max-width: 767.98px) {
+  @media (max-width: 991.98px) {
+    .table-responsive {
+      overflow-x: auto !important;
+      display: block;
+      width: 100%;
+      -webkit-overflow-scrolling: touch;
+    }
+    .table-responsive table {
+      width: 100% !important;
+      min-width: 800px; /* Force table to be wider than screen */
+    }
     .order-details-scroll {
-      /* overflow-x: auto; */
-      /* -webkit-overflow-scrolling: touch; */
-      padding-bottom: 5px;
-      margin-top: 5px;
+      overflow: visible !important; /* Remove individual column scroll */
     }
     .order-details-list {
       display: flex !important;
@@ -19,9 +26,12 @@
     }
     .order-details-list li {
       flex: 0 0 auto;
-      /* white-space: nowrap; */
-      font-size: 15px;
-      color: #6e7687;
+      white-space: nowrap !important;
+      font-size: 14px;
+      color: #727b83;
+    }
+    .table th, .table td {
+      white-space: nowrap !important; /* Prevent text wrapping */
     }
   }
 </style>
