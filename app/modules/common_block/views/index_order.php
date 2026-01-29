@@ -8,18 +8,22 @@
       display: block;
       width: 100%;
       -webkit-overflow-scrolling: touch;
+      border: none !important;
     }
     .table-responsive table {
-      width: 100% !important;
-      min-width: 800px; /* Force table to be wider than screen */
+      width: max-content !important;
+      min-width: 100% !important;
+      table-layout: auto !important;
+      margin-bottom: 0;
     }
     .order-details-scroll {
-      overflow: visible !important; /* Remove individual column scroll */
+      overflow: visible !important;
+      width: 100%;
     }
     .order-details-list {
       display: flex !important;
       flex-wrap: nowrap !important;
-      gap: 15px;
+      gap: 20px;
       padding: 0;
       margin: 0;
       list-style: none;
@@ -31,7 +35,15 @@
       color: #727b83;
     }
     .table th, .table td {
-      white-space: nowrap !important; /* Prevent text wrapping */
+      white-space: nowrap !important;
+      max-width: none !important;
+      min-width: 100px;
+      padding: 0.75rem 1rem !important;
+    }
+    /* Fixed widths for small columns to maintain alignment */
+    .table .w-1, .table .w-10p {
+      min-width: 60px !important;
+      width: auto !important;
     }
   }
 </style>
