@@ -82,6 +82,11 @@
             gap: 12px;
             margin-top: 20px;
         }
+        @media (max-width: 991.98px) {
+            .trust-badges {
+                justify-content: center;
+            }
+        }
         .trust-badge {
             background: #ffffff;
             border: 1px solid #e2e8f0;
