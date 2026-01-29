@@ -1,4 +1,39 @@
-    <footer id="footer" class="footer">
+   <style>
+  .footer {
+    color: #ffffffa6;
+    background: #0b0f19;
+    padding-top: 60px;
+  }
+  .footer .logo img {
+      max-height: 45px;
+      width: auto;
+      margin-bottom: 20px;
+  }
+  .footer a {
+      color: #cbd5f5 !important;
+      text-decoration: none;
+  }
+  .footer a:hover {
+      color: #ffffff !important;
+  }
+  .footer h4 {
+      color: #ffffff;
+      margin-bottom: 20px;
+  }
+  .footer ul {
+      list-style: none;
+      padding: 0;
+  }
+  .footer ul li {
+      margin-bottom: 10px;
+  }
+  .footer-bottom {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #1f2937;
+  }
+</style>
+   <footer id="footer" class="footer">
         <div class="container">
           <div class="row footer-top">
             <div class="col-lg-6 col-md-12 footer-info" id="about-us">
