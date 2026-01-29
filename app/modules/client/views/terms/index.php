@@ -37,6 +37,17 @@
             padding: 12px 22px;
             font-weight: 600;
         }
+                .header {
+            padding-top: 30px;
+            padding-bottom: 5px;
+        }
+        .header .header-content {
+            padding-top: 3rem !important;
+            padding-bottom: 3rem !important;
+        }
+        .section-header {
+            margin-bottom: 12px;
+        }
   .footer {
     color: #ffffffa6;
     background: #0b0f19;
