@@ -62,7 +62,44 @@
       $xhtml_header_nav .= '</ul>';
     ?>
     <header class="header fixed-top" id="headerNav">
-      <div class="container">
+          <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+            <?php
+                $logo_area_html = '';
+                if ($default_nico_theme_type == 'dark') {
+                    $logo_url = get_option('website_logo_white', BASE."assets/images/logo_white.png");
+                } else {
+                    $logo_url = get_option('website_logo', BASE."assets/images/logo.png");
+                }
+                $logo_area_html = sprintf(
+                    '<a class="navbar-brand logo-image" href="%s">
+                        <img src="%s" alt="%s">
+                    </a> ', cn(), $logo_url, get_option('website_name')
+                );
+                echo $logo_area_html;
+            ?>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-awesome fas fa-bars"></span>
+                <span class="navbar-toggler-awesome fas fa-times"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <?php echo render_header_nav_ul(); ?>
+                <span class="nav-item">
+                <?php 
+                    if (!session('uid')) {
+                    ?>
+                    <a class="btn btn-login btn-login-green" href="<?=cn('auth/login')?>">Login</a>
+                    <?php if (!get_option('disable_signup_page')) { ?>
+                        <a class="btn btn-signup-blue btn-getstarted" href="<?=cn('auth/signup')?>">Sign Up</a>
+                    <?php }; ?>
+                    <?php } else {?>
+                    <a class="btn btn-signup-blue btn-getstarted" href="<?=cn('statistics')?>"><?=lang("dashboard")?></a>
+                    <?php } ?>
+                </span>
+            </div>
+        </div>
+    </nav> 
+      <!-- <div class="container">
         <nav class="navbar navbar-expand-lg ">
           <a class="navbar-brand" href="<?=cn()?>">
             <img class="site-logo" src="<?=get_option('website_logo', BASE."assets/images/logo.png")?>" alt="Webstie logo">
@@ -84,7 +121,7 @@
             </div>
           </div>
         </nav>
-      </div>
+      </div> -->
     </header>
 
     <div class="page p-t-70">
