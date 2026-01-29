@@ -34,11 +34,15 @@
       padding-top: 20px;
       border-top: 1px solid #1f2937;
   }
+  .page-title {
+    text-align: center;
+  }
   .page-title h1{
     margin-bottom: 5px; }
     .page-title .border-line {
       height: 5px;
       width: 300px;
+      margin: 0 auto;
       background: #eca28d;
       background: -webkit-linear-gradient(45deg, #eca28d, #f98c6b) !important;
       background: -moz- oldlinear-gradient(45deg, #eca28d, #f98c6b) !important;
