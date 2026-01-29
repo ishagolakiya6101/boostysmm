@@ -4,8 +4,8 @@
 <style>
   @media (max-width: 767.98px) {
     .order-details-scroll {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
+      /* overflow-x: auto; */
+      /* -webkit-overflow-scrolling: touch; */
       padding-bottom: 5px;
       margin-top: 5px;
     }
