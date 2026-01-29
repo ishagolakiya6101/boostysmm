@@ -2,13 +2,36 @@
 <style>
   .footer {
     font-family: "Poppins", "Inter", "Montserrat", sans-serif;
-    color: #f5f5f5ff;
-      background: #0b0f19;
+    color: #f5f5f5;
+    background: #0b0f19;
+    padding: 60px 0;
+  }
+  .footer .logo img {
+      max-height: 45px;
+      width: auto;
+      margin-bottom: 20px;
   }
   .footer a {
-      color: #1e253aff;
+      color: #cbd5f5 !important;
+      text-decoration: none;
+  }
+  .footer a:hover {
+      color: #ffffff !important;
+  }
+  .footer h4 {
+      color: #ffffff;
+      margin-bottom: 20px;
+  }
+  .footer ul {
+      list-style: none;
+      padding: 0;
+  }
+  .footer ul li {
+      margin-bottom: 10px;
   }
   .footer-bottom {
+      margin-top: 40px;
+      padding-top: 20px;
       border-top: 1px solid #1f2937;
   }
   .page-title h1{
