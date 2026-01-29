@@ -1,5 +1,42 @@
 
 <style>
+  .navbar-custom {
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        }
+        .header {
+            background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.10), transparent 55%),
+                        radial-gradient(circle at top right, rgba(34, 197, 94, 0.08), transparent 60%);
+        }
+        .header .text-container h1,
+        .section-header .h2-heading,
+        .section-header h2 {
+            color: #0f172a;
+        }
+        .header .text-container .p-large {
+            color: #475569;
+        }
+        .btn-login-green {
+            background: #22c55e;
+            border-color: #22c55e;
+            color: #ffffff !important;
+        }
+        .btn-signup-blue {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            color: #ffffff !important;
+        }
+        .btn-login-green:hover,
+        .btn-signup-blue:hover {
+            filter: brightness(1.05);
+        }
+        .hero-buttons .btn {
+            margin-right: 12px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            padding: 12px 22px;
+            font-weight: 600;
+        }
   .footer {
     color: #ffffffa6;
     background: #0b0f19;
