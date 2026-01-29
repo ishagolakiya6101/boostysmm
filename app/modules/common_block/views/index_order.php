@@ -19,8 +19,8 @@
     }
     .order-details-list li {
       flex: 0 0 auto;
-      white-space: nowrap;
-      font-size: 12px;
+      /* white-space: nowrap; */
+      font-size: 15px;
       color: #6e7687;
     }
   }
