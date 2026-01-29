@@ -222,7 +222,7 @@
         <div class="header-content">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-xl-6">
+                    <div class="col-lg-12 col-xl-12">
                         <div class="text-container">
                             <h1 data-aos="fade-up">Boost Your Social Media Instantly</h1>
                             <p class="p-large" data-aos="fade-up" data-aos-delay="400">India-focused SMM panel with fast INR payments & reliable support.</p>
@@ -243,13 +243,13 @@
                             </div>
                         </div>
                     </div> 
-                    <div class="col-lg-6 col-xl-6">
+                    <!-- <div class="col-lg-6 col-xl-6">
                         <div class="image-container" data-aos="zoom-out" data-aos-delay="200">
                             <div class="img-wrapper">
                                 <img class="img-fluid" src="<?php echo BASE; ?>themes/nico/assets/images/home/header-hero.png" alt="Social media growth illustration">
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
