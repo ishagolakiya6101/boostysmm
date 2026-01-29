@@ -1,5 +1,14 @@
 
 <style>
+  .footer {
+      background: #0b0f19;
+  }
+  .footer a {
+      color: #cbd5f5;
+  }
+  .footer-bottom {
+      border-top: 1px solid #1f2937;
+  }
   .page-title h1{
     margin-bottom: 5px; }
     .page-title .border-line {
