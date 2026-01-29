@@ -87,6 +87,9 @@
   .section-header {
       margin-bottom: 12px;
   }
+  .login-nav {
+    padding: 12px;
+  }
   .navbar {
     background: #ffffff;
     width: 100%;
@@ -138,7 +141,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <?php echo render_header_nav_ul(); ?>
-                <span class="nav-item">
+                <span class="nav-item login-nav">
                 <?php 
                     if (!session('uid')) {
                     ?>
