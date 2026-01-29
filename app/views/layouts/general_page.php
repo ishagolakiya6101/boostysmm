@@ -61,34 +61,30 @@
       }
       $xhtml_header_nav .= '</ul>';
     ?>
-    <header id="header" class="header">
-        <div class="header-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-xl-12">
-                        <div class="text-container">
-                            <h1 data-aos="fade-up">Boost Your Social Media Instantly</h1>
-                            <p class="p-large" data-aos="fade-up" data-aos-delay="400">India-focused SMM panel with fast INR payments & reliable support.</p>
-                            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
-                                <?php if (!session('uid')) : ?>
-                                    <a class="btn btn-login-green" href="<?=cn('auth/login')?>">Login</a>
-                                    <?php if (!get_option('disable_signup_page')) : ?>
-                                        <a class="btn btn-signup-blue" href="<?=cn('auth/signup')?>">Sign Up</a>
-                                    <?php endif; ?>
-                                <?php else : ?>
-                                    <a class="btn btn-signup-blue" href="<?=cn('statistics')?>"><?=lang("dashboard")?></a>
-                                <?php endif; ?>
-                            </div>
-                            <div class="trust-badges">
-                                <div class="trust-badge">✔ 24/7 Support</div>
-                                <div class="trust-badge">✔ Fast Delivery</div>
-                                <div class="trust-badge">✔ Secure Payments</div>
-                            </div>
-                        </div>
-                    </div> 
-                </div>
+    <header class="header fixed-top" id="headerNav">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg ">
+          <a class="navbar-brand" href="<?=cn()?>">
+            <img class="site-logo" src="<?=get_option('website_logo', BASE."assets/images/logo.png")?>" alt="Webstie logo">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span><i class="fe fe-menu"></i></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <?php echo render_header_nav_ul(); ?>
+            <div class="nav-item d-md-flex btn-login-signup">
+              <?php 
+                if (!session('uid')) {
+              ?>
+                <a class="link btn-login" href="<?=cn('auth/login')?>"><?=lang("Login")?></a>
+                <a href="<?=cn('auth/signup')?>" class="btn btn-pill btn-outline-primary sign-up"><?=lang("Sign_Up")?></a>
+              <?php } else {?>
+                <a href="<?=cn('statistics')?>" class="btn btn-pill btn-outline-primary btn-statistics text-uppercase"><?=lang("statistics")?></a>
+              <?php }?>
             </div>
-        </div>
+          </div>
+        </nav>
+      </div>
     </header>
 
     <div class="page p-t-70">
