@@ -243,13 +243,6 @@
                             </div>
                         </div>
                     </div> 
-                    <!-- <div class="col-lg-6 col-xl-6">
-                        <div class="image-container" data-aos="zoom-out" data-aos-delay="200">
-                            <div class="img-wrapper">
-                                <img class="img-fluid" src="<?php echo BASE; ?>themes/nico/assets/images/home/header-hero.png" alt="Social media growth illustration">
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
