@@ -47,6 +47,10 @@
         .section-header {
             margin-bottom: 12px;
         }
+        .navbar {
+          background: #ffffff;
+          box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        }
   .footer {
     color: #ffffffa6;
     background: #0b0f19;
