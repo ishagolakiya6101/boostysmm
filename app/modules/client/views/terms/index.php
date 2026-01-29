@@ -1,7 +1,7 @@
 
 <style>
   .footer {
-    font-family: "Poppins", "Inter", "Montserrat", sans-serif !important;
+    /* font-family: "Poppins", "Inter", "Montserrat", sans-serif !important; */
     color: #f5f5f5;
     background: #0b0f19;
     padding: 60px 0;
