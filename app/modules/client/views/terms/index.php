@@ -37,8 +37,7 @@
             padding: 12px 22px;
             font-weight: 600;
         }
-                .header {
-            padding-top: 30px;
+        .header {
             padding-bottom: 5px;
         }
         .header .header-content {
