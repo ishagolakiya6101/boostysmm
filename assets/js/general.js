@@ -313,17 +313,24 @@ function General() {
 
                 if (is_json(_result)) {
                     _result = JSON.parse(_result);
-                    if (_result.status == 'success' && _result.notification_type == 'place-order') {
+                    // Only apply special handling for "add new order" form
+                    if (_result.status == 'success' && _result.notification_type == 'place-order' && _action.indexOf('ajax_add_order') !== -1) {
+                        // Reset form immediately after successful order
+                        resetOrderForm();
+                        
+                        // Show success message after a short delay
                         setTimeout(function () {
                             show_success_message_place_order(_result);
-                        }, 3000);
+                        }, 1500);
+                        
+                        // Refresh page after 10 seconds
                         setTimeout(function () {
                             if (_redirect) {
                                 window.location.href = _redirect;
                             } else {
                                 location.reload();
                             }
-                        }, 3000);
+                        }, 10000);
                     } else {
                         if ($("#order_resume").length > 0) {
                             if (!$(".order-success").hasClass('d-none')) {
@@ -383,6 +390,59 @@ function General() {
                 $(".order-success").removeClass('d-none')
             }
             $(".user-balance").html(data.user_balance);
+        }
+
+        // Reset order form after successful submission (only for add new order form)
+        function resetOrderForm() {
+            // Only proceed if we're on the add new order page
+            var form = $('#new_order .actionForm');
+            if (form.length === 0) return;
+            
+            // Reset all standard form inputs
+            form[0].reset();
+            
+            // Reset selectize inputs (service search)
+            if ($('#new_order .ajaxSearchService').length && $('#new_order .ajaxSearchService')[0].selectize) {
+                $('#new_order .ajaxSearchService')[0].selectize.clear();
+            }
+            
+            // Reset category select
+            if ($('#new_order .ajaxChangeCategory').length) {
+                $('#new_order .ajaxChangeCategory').val('').trigger('change');
+            }
+            
+            // Reset service select
+            if ($('#new_order .ajaxChangeService').length) {
+                $('#new_order .ajaxChangeService').val('').trigger('change');
+            }
+            
+            // Reset quantity min/max display
+            $('#new_order #quantity_min_max').text('Min: 0 - Max: 0');
+            $('#new_order #quantity_warning').hide();
+            $('#new_order #link_error_message').hide();
+            
+            // Reset total charge
+            $('#new_order .charge_number').text('0');
+            $('#new_order input[name="total_charge"]').val('0.00');
+            
+            // Reset checkbox
+            $('#new_order input[name="agree"]').prop('checked', false);
+            
+            // Hide any visible error messages
+            $('#new_order .alert-danger').addClass('d-none');
+            
+            // Reset selectize tags if any
+            $('#new_order .input-tags').each(function() {
+                if (this.selectize) {
+                    this.selectize.clear();
+                }
+            });
+            
+            // Reset textareas
+            form.find('textarea').val('');
+            
+            // Clear any custom fields
+            $('#new_order .order-comments, #new_order .order-comments-custom-package, #new_order .order-usernames, #new_order .order-usernames-custom, #new_order .order-hashtags, #new_order .order-hashtag, #new_order .order-username, #new_order .order-media').addClass('d-none');
         }
 
         // actionFormWithoutToast
